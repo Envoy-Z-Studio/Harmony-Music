@@ -5,7 +5,7 @@ Future<void> generate() async {
 
   String allLangData = "";
 
-  var myDir = Directory('./localization');
+  var myDir = Directory('./lib/Localization');
   myDir.listSync(recursive: true, followLinks: false).forEach((entity) {
     if (entity.uri.toString().contains("generator")) {
       return;
