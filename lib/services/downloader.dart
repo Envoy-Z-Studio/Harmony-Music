@@ -180,8 +180,8 @@ class Downloader extends GetxService {
         requiredAudioStream.audioCodec.name.contains("mp") ? "m4a" : "opus";
     final RegExp invalidChar =
         RegExp(r'Container.|\/|\\|\"|\<|\>|\*|\?|\:|\!|\[|\]|\¡|\||\%');
-    final songTitle =
-        "${song.title.trim()} (${song.artist?.trim()})".replaceAll(invalidChar, "");
+    final songTitle = "${song.title.trim()} (${song.artist?.trim()})"
+        .replaceAll(invalidChar, "");
     String filePath = "$dirPath/$songTitle.$actualDownformat";
     printINFO("Downloading filePath: $filePath");
     final totalBytes = requiredAudioStream.size;

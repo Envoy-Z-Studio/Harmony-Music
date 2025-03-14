@@ -63,10 +63,10 @@ class MyApp extends StatelessWidget {
               mQuery.textScaler.clamp(minScaleFactor: 1.0, maxScaleFactor: 1.1);
           return Stack(
             children: [
-             GetX<ThemeController>(
+              GetX<ThemeController>(
                 builder: (controller) => MediaQuery(
-                data: mQuery.copyWith(textScaler: scale),
-                child:  AnimatedTheme(
+                  data: mQuery.copyWith(textScaler: scale),
+                  child: AnimatedTheme(
                       duration: const Duration(milliseconds: 700),
                       data: controller.themedata.value!,
                       child: child!),

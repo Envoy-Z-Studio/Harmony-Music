@@ -82,7 +82,9 @@ class PlayListNAlbumScreenController extends GetxController {
         ? await Hive.openBox("LibraryAlbums")
         : await Hive.openBox("LibraryPlaylists");
     isAddedToLibrary.value = box.containsKey(id);
-    if (isAlbum && isAddedToLibrary.value) contentRenderer = Album.fromJson(box.get(id));
+    if (isAlbum && isAddedToLibrary.value) {
+      contentRenderer = Album.fromJson(box.get(id));
+    }
   }
 
   void addNRemoveItemsinList(MediaItem? item,

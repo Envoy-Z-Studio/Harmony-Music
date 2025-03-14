@@ -9,7 +9,7 @@ import '../../utils/theme_controller.dart';
 import '../player_controller.dart';
 
 class BackgroudImage extends StatelessWidget {
-  const BackgroudImage({super.key,this.cacheHeight});
+  const BackgroudImage({super.key, this.cacheHeight});
 
   final int? cacheHeight;
 

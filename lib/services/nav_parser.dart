@@ -500,8 +500,9 @@ List<dynamic> parsePlaylistItems(List<dynamic> results,
         'browseId'
       ]);
       videoId = creditId?.split("MPTC")[1];
-      trackDetails =
-          data?["index"] != null ? "${nav(data,['index','runs',0,'text'])}/${results.length}" : null;
+      trackDetails = data?["index"] != null
+          ? "${nav(data, ['index', 'runs', 0, 'text'])}/${results.length}"
+          : null;
     }
 
     // if the item has a menu, find its setVideoId
