@@ -5,12 +5,12 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 
-import '/models/album.dart';
-import '/services/utils.dart';
-import '../utils/helper.dart';
-import 'constant.dart';
-import 'continuations.dart';
-import 'nav_parser.dart';
+import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/services/utils.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/services/constant.dart';
+import 'package:harmonymusic/services/continuations.dart';
+import 'package:harmonymusic/services/nav_parser.dart';
 
 enum AudioQuality {
   Low,

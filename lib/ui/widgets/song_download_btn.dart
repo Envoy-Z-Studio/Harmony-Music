@@ -5,8 +5,8 @@ import 'package:harmonymusic/services/downloader.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:hive/hive.dart';
 
-import 'loader.dart';
-import 'snackbar.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
 
 class SongDownloadButton extends StatelessWidget {
   const SongDownloadButton(

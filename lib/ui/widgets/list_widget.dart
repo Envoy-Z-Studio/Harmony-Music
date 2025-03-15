@@ -5,17 +5,17 @@ import 'package:get/get.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '/models/album.dart';
-import '../../models/artist.dart';
-import '../../models/playling_from.dart';
-import '/ui/screens/Settings/settings_screen_controller.dart';
-import '/ui/widgets/snackbar.dart';
-import '../../models/playlist.dart';
-import '../navigator.dart';
-import '../player/player_controller.dart';
-import 'add_to_playlist.dart';
-import 'image_widget.dart';
-import 'songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/models/artist.dart';
+import 'package:harmonymusic/models/playling_from.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/add_to_playlist.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {
   const ListWidget(this.items, this.title, this.isCompleteList,

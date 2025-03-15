@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
 
-import '../../widgets/loader.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
 
 /// A button that animates between a play and pause icon.
 ///

@@ -4,19 +4,19 @@ import 'package:harmonymusic/utils/helper.dart';
 import 'package:harmonymusic/utils/lang_mapping.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../widgets/common_dialog_widget.dart';
-import '../../widgets/cust_switch.dart';
-import '../../widgets/export_file_dialog.dart';
-import '../../widgets/backup_dialog.dart';
-import '../../widgets/restore_dialog.dart';
-import '../Library/library_controller.dart';
-import '../../widgets/snackbar.dart';
-import '/ui/widgets/link_piped.dart';
-import '/services/music_service.dart';
-import '/ui/player/player_controller.dart';
-import '/ui/utils/theme_controller.dart';
-import 'components/custom_expansion_tile.dart';
-import 'settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
+import 'package:harmonymusic/ui/widgets/cust_switch.dart';
+import 'package:harmonymusic/ui/widgets/export_file_dialog.dart';
+import 'package:harmonymusic/ui/widgets/backup_dialog.dart';
+import 'package:harmonymusic/ui/widgets/restore_dialog.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/ui/widgets/link_piped.dart';
+import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/utils/theme_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/components/custom_expansion_tile.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key, this.isBottomNavActive = false});

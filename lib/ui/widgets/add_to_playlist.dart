@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import '../../services/piped_service.dart';
-import '/models/media_Item_builder.dart';
-import '/ui/widgets/create_playlist_dialog.dart';
-import '../../models/playlist.dart';
-import 'common_dialog_widget.dart';
-import 'snackbar.dart';
+import 'package:harmonymusic/services/piped_service.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
+import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
+import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
 
 class AddToPlaylist extends StatelessWidget {
   const AddToPlaylist(this.songItems, {super.key});

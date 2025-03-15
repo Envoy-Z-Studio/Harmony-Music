@@ -6,21 +6,21 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
-import '/ui/screens/Search/search_screen_controller.dart';
-import '/utils/get_localization.dart';
-import '/services/downloader.dart';
-import '/services/piped_service.dart';
-import 'utils/app_link_controller.dart';
-import '/services/audio_handler.dart';
-import '/services/music_service.dart';
-import '/ui/home.dart';
-import '/ui/player/player_controller.dart';
-import 'ui/screens/Settings/settings_screen_controller.dart';
-import '/ui/utils/theme_controller.dart';
-import 'ui/screens/Home/home_screen_controller.dart';
-import 'ui/screens/Library/library_controller.dart';
-import 'utils/system_tray.dart';
-import 'utils/update_check_flag_file.dart';
+import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
+import 'package:harmonymusic/utils/get_localization.dart';
+import 'package:harmonymusic/services/downloader.dart';
+import 'package:harmonymusic/services/piped_service.dart';
+import 'package:harmonymusic/utils/app_link_controller.dart';
+import 'package:harmonymusic/services/audio_handler.dart';
+import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/ui/home.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/utils/theme_controller.dart';
+import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/utils/system_tray.dart';
+import 'package:harmonymusic/utils/update_check_flag_file.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

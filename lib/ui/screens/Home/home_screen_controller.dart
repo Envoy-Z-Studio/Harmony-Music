@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import '/models/media_Item_builder.dart';
-import '/ui/player/player_controller.dart';
-import '../../../utils/update_check_flag_file.dart';
-import '../../../utils/helper.dart';
-import '/models/album.dart';
-import '/models/playlist.dart';
-import '/models/quick_picks.dart';
-import '/services/music_service.dart';
-import '../Settings/settings_screen_controller.dart';
-import '/ui/widgets/new_version_dialog.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/utils/update_check_flag_file.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/models/quick_picks.dart';
+import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/new_version_dialog.dart';
 
 class HomeScreenController extends GetxController {
   final MusicServices _musicServices = Get.find<MusicServices>();

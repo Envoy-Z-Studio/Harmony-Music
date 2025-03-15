@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:math';
-import 'nav_parser.dart';
+import 'package:harmonymusic/services/nav_parser.dart';
 
 const CONTINUATION_TOKEN = [
   "continuationItemRenderer",

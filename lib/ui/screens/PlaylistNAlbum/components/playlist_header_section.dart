@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../../../models/playlist.dart';
-import '../../../../services/downloader.dart';
-import '../../../navigator.dart';
-import '../../../player/player_controller.dart';
-import '../../../widgets/create_playlist_dialog.dart';
-import '../../../widgets/image_widget.dart';
-import '../../../widgets/loader.dart';
-import '../../../widgets/snackbar.dart';
-import '../../Library/library_controller.dart';
-import '../playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/services/downloader.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
 
 class PlaylistDescription extends StatelessWidget {
   const PlaylistDescription(

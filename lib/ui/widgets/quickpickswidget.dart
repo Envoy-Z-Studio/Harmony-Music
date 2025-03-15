@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart' show kSecondaryMouseButton;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/models/quick_picks.dart';
-import '../player/player_controller.dart';
-import 'image_widget.dart';
-import 'songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/models/quick_picks.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 class QuickPicksWidget extends StatelessWidget {
   const QuickPicksWidget(

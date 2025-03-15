@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/ui/player/components/lyrics_widget.dart';
-import '/ui/player/player_controller.dart';
-import '../../widgets/image_widget.dart';
-import '../../widgets/sleep_timer_bottom_sheet.dart';
-import '../../widgets/songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/ui/player/components/lyrics_widget.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/sleep_timer_bottom_sheet.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 class AlbumArtNLyrics extends StatelessWidget {
   const AlbumArtNLyrics({super.key, required this.playerArtImageSize});

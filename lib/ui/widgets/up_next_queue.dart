@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import 'image_widget.dart';
-import 'snackbar.dart';
-import 'songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 class UpNextQueue extends StatelessWidget {
   const UpNextQueue(

@@ -5,16 +5,16 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../../utils/house_keeping.dart';
-import '../../widgets/add_to_playlist.dart';
-import '/ui/widgets/sort_widget.dart';
-import '../Settings/settings_screen_controller.dart';
-import '/services/piped_service.dart';
-import '../../../utils/helper.dart';
-import '/models/album.dart';
-import '/models/artist.dart';
-import '/models/media_Item_builder.dart';
-import '/models/playlist.dart';
+import 'package:harmonymusic/utils/house_keeping.dart';
+import 'package:harmonymusic/ui/widgets/add_to_playlist.dart';
+import 'package:harmonymusic/ui/widgets/sort_widget.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/services/piped_service.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/models/artist.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
+import 'package:harmonymusic/models/playlist.dart';
 
 class LibrarySongsController extends GetxController {
   late RxList<MediaItem> librarySongsList = RxList();

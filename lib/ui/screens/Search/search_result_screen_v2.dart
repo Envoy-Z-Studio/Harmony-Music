@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/ui/widgets/loader.dart';
 import 'package:harmonymusic/ui/widgets/search_related_widgets.dart';
 
-import '../../navigator.dart';
-import '../../widgets/separate_tab_item_widget.dart';
-import 'search_result_screen_controller.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/widgets/separate_tab_item_widget.dart';
+import 'package:harmonymusic/ui/screens/Search/search_result_screen_controller.dart';
 
 class SearchResultScreenBN extends StatelessWidget {
   const SearchResultScreenBN({super.key});

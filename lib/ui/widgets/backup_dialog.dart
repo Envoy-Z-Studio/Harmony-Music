@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import '/ui/screens/Settings/settings_screen_controller.dart';
-import '/ui/widgets/loader.dart';
-import '/utils/helper.dart';
-import '../../services/permission_service.dart';
-import 'common_dialog_widget.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
 
 class BackupDialog extends StatelessWidget {
   const BackupDialog({super.key});

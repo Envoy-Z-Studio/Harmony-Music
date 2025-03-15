@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'basic_container.dart';
+import 'package:harmonymusic/ui/widgets/shimmer_widgets/basic_container.dart';
 
 class HomeShimmer extends StatelessWidget {
   const HomeShimmer({super.key});

@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/loader.dart';
 
-import '../../services/permission_service.dart';
-import 'common_dialog_widget.dart';
+import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
 
 class ExportFileDialog extends StatelessWidget {
   const ExportFileDialog({super.key});

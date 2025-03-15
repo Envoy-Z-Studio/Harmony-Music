@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'search_item.dart';
-import '/ui/screens/Search/search_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Search/components/search_item.dart';
+import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
 
-import '../../../navigator.dart';
+import 'package:harmonymusic/ui/navigator.dart';
 
 class DesktopSearchBar extends StatelessWidget {
   const DesktopSearchBar({super.key});

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:harmonymusic/utils/helper.dart';
 
-import '../screens/Library/library_controller.dart';
-import 'snackbar.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
 
 class PipedSyncWidget extends StatelessWidget {
   const PipedSyncWidget({super.key, required this.padding});

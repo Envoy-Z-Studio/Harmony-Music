@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import '/ui/player/components/animated_play_button.dart';
-import '../player_controller.dart';
+import 'package:harmonymusic/ui/player/components/animated_play_button.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
 
 class PlayerControlWidget extends StatelessWidget {
   const PlayerControlWidget({super.key});

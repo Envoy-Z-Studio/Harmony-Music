@@ -6,22 +6,22 @@ import 'package:ionicons/ionicons.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../services/downloader.dart';
-import '../screens/Settings/settings_screen_controller.dart';
-import '/utils/helper.dart';
-import '/services/piped_service.dart';
-import '/ui/widgets/sleep_timer_bottom_sheet.dart';
-import '/ui/player/player_controller.dart';
-import '../screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
-import '../screens/Library/library_controller.dart';
-import '/ui/widgets/add_to_playlist.dart';
-import '/ui/widgets/snackbar.dart';
-import '../../models/media_Item_builder.dart';
-import '../../models/playlist.dart';
-import '../navigator.dart';
-import 'song_download_btn.dart';
-import 'image_widget.dart';
-import 'song_info_dialog.dart';
+import 'package:harmonymusic/services/downloader.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/services/piped_service.dart';
+import 'package:harmonymusic/ui/widgets/sleep_timer_bottom_sheet.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/widgets/add_to_playlist.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
+import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/widgets/song_download_btn.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/song_info_dialog.dart';
 
 class SongInfoBottomSheet extends StatelessWidget {
   const SongInfoBottomSheet(this.song,

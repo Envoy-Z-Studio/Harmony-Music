@@ -8,9 +8,9 @@ import 'package:harmonymusic/ui/player/components/backgroud_image.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import '../../widgets/songinfo_bottom_sheet.dart';
-import '../../utils/theme_controller.dart';
-import '../player_controller.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/ui/utils/theme_controller.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
 
 class GesturePlayer extends StatelessWidget {
   const GesturePlayer({super.key});

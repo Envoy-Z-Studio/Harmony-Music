@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
-import '/ui/player/components/gesture_player.dart';
-import '/ui/player/components/standard_player.dart';
-import '/ui/screens/Settings/settings_screen_controller.dart';
-import '../../utils/helper.dart';
-import '../widgets/snackbar.dart';
-import '../widgets/up_next_queue.dart';
-import '/ui/player/player_controller.dart';
-import '../widgets/sliding_up_panel.dart';
+import 'package:harmonymusic/ui/player/components/gesture_player.dart';
+import 'package:harmonymusic/ui/player/components/standard_player.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/ui/widgets/up_next_queue.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/sliding_up_panel.dart';
 
 /// Player screen
 /// Contains the player ui

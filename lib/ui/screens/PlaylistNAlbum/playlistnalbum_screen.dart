@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '/ui/screens/PlaylistNAlbum/components/playlist_content_section.dart';
-import '/ui/screens/PlaylistNAlbum/components/playlist_header_section.dart';
-import '../../widgets/loader.dart';
-import '/ui/navigator.dart';
-import 'playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/components/playlist_content_section.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/components/playlist_header_section.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
 
 class PlaylistNAlbumScreen extends StatelessWidget {
   ///PlaylistScreen renders playlist content

@@ -7,10 +7,10 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
-import '/ui/screens/Settings/settings_screen_controller.dart';
-import '/utils/helper.dart';
-import '../../services/permission_service.dart';
-import 'common_dialog_widget.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/utils/helper.dart';
+import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
 
 class RestoreDialog extends StatelessWidget {
   const RestoreDialog({super.key});
