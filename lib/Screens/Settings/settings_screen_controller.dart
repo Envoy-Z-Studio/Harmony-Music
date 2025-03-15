@@ -10,14 +10,14 @@ import 'package:permission_handler/permission_handler.dart';
 
 import 'package:harmonymusic/Services/music_service.dart';
 import 'package:harmonymusic/Services/permission_service.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/Screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/Screens/Library/library_controller.dart';
 import 'package:harmonymusic/Theme/theme_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/snackbar.dart';
 import 'package:harmonymusic/Utilities/helper.dart';
-import 'package:harmonymusic/Utilities/update_check_flag_file.dart';
+import 'package:harmonymusic/Utilities/update_check_flag.dart';
 
 class SettingsScreenController extends GetxController {
   late String _supportDir;

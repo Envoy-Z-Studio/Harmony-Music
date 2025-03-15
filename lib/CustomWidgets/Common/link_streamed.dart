@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Library/library_controller.dart';
 import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/common_dialog_widget.dart';

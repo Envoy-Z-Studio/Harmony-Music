@@ -4,9 +4,9 @@ import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/CustomWidgets/Common/common_dialog_widget.dart';
 import 'package:harmonymusic/CustomWidgets/Common/create_playlist_dialog.dart';
 import 'package:harmonymusic/CustomWidgets/Common/snackbar.dart';

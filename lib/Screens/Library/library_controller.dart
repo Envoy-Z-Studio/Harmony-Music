@@ -9,9 +9,9 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:harmonymusic/Models/album.dart';
 import 'package:harmonymusic/Models/artist.dart';
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/add_to_playlist.dart';
 import 'package:harmonymusic/CustomWidgets/Common/sort_widget.dart';

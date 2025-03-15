@@ -15,7 +15,7 @@ import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/animated_screen_transition.dart';
 import 'package:harmonymusic/CustomWidgets/Common/content_list_widget.dart';
 import 'package:harmonymusic/CustomWidgets/Common/create_playlist_dialog.dart';
-import 'package:harmonymusic/CustomWidgets/Common/quickpickswidget.dart';
+import 'package:harmonymusic/CustomWidgets/Common/quick_picks_widget.dart';
 import 'package:harmonymusic/CustomWidgets/Shimmer/home_shimmer.dart';
 import 'package:harmonymusic/CustomWidgets/Common/side_nav_bar.dart';
 

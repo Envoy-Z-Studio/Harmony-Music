@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import 'package:harmonymusic/Models/album.dart';
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
 import 'package:harmonymusic/Services/music_service.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/Screens/Library/library_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/add_to_playlist.dart';

@@ -9,8 +9,8 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import 'package:harmonymusic/Models/durationstate.dart';
-import 'package:harmonymusic/Models/media_Item_builder.dart';
-import 'package:harmonymusic/Models/playling_from.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
+import 'package:harmonymusic/Models/playing_from.dart';
 import 'package:harmonymusic/Services/downloader.dart';
 import 'package:harmonymusic/Services/music_service.dart';
 import 'package:harmonymusic/Services/synced_lyrics_service.dart';

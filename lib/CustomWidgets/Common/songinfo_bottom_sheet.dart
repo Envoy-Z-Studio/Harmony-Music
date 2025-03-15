@@ -7,10 +7,10 @@ import 'package:ionicons/ionicons.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
 import 'package:harmonymusic/Services/downloader.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Helpers/navigation_helper.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/Screens/Library/library_controller.dart';

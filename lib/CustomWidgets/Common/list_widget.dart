@@ -8,7 +8,7 @@ import 'package:widget_marquee/widget_marquee.dart';
 
 import 'package:harmonymusic/Models/album.dart';
 import 'package:harmonymusic/Models/artist.dart';
-import 'package:harmonymusic/Models/playling_from.dart';
+import 'package:harmonymusic/Models/playing_from.dart';
 import 'package:harmonymusic/Models/playlist.dart';
 import 'package:harmonymusic/Helpers/navigation_helper.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';

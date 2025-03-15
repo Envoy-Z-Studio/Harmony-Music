@@ -14,7 +14,7 @@ import "package:media_kit/src/player/platform_player.dart" show MPVLogLevel;
 import 'package:path_provider/path_provider.dart';
 
 import 'package:harmonymusic/Models/hm_streaming_data.dart';
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Services/background_task.dart';
 import 'package:harmonymusic/Services/equalizer.dart';
 import 'package:harmonymusic/Services/permission_service.dart';

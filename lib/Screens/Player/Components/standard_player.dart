@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
-import 'package:harmonymusic/Screens/Player/Components/backgroud_image.dart';
+import 'package:harmonymusic/Screens/Player/Components/background_image.dart';
 import 'package:harmonymusic/Screens/Player/Components/lyrics_switch.dart';
 import 'package:harmonymusic/Screens/Player/Components/player_control.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';

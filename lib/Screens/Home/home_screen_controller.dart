@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
 import 'package:harmonymusic/Models/album.dart';
-import 'package:harmonymusic/Models/media_Item_builder.dart';
+import 'package:harmonymusic/Models/media_item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
 import 'package:harmonymusic/Models/quick_picks.dart';
 import 'package:harmonymusic/Services/music_service.dart';
@@ -13,7 +13,7 @@ import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/new_version_dialog.dart';
 import 'package:harmonymusic/Utilities/helper.dart';
-import 'package:harmonymusic/Utilities/update_check_flag_file.dart';
+import 'package:harmonymusic/Utilities/update_check_flag.dart';
 
 class HomeScreenController extends GetxController {
   final MusicServices _musicServices = Get.find<MusicServices>();

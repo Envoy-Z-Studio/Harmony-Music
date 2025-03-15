@@ -10,7 +10,7 @@ import 'package:terminate_restart/terminate_restart.dart';
 import 'package:harmonymusic/Services/audio_handler.dart';
 import 'package:harmonymusic/Services/downloader.dart';
 import 'package:harmonymusic/Services/music_service.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Home/home.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/Screens/Home/home_screen_controller.dart';
@@ -21,7 +21,7 @@ import 'package:harmonymusic/Theme/theme_controller.dart';
 import 'package:harmonymusic/Utilities/app_link_controller.dart';
 import 'package:harmonymusic/Utilities/get_localization.dart';
 import 'package:harmonymusic/Utilities/system_tray.dart';
-import 'package:harmonymusic/Utilities/update_check_flag_file.dart';
+import 'package:harmonymusic/Utilities/update_check_flag.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

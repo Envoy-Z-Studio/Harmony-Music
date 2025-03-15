@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:app_links/app_links.dart';
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/Models/playling_from.dart';
+import 'package:harmonymusic/Models/playing_from.dart';
 import 'package:harmonymusic/Services/music_service.dart';
 import 'package:harmonymusic/Helpers/navigation_helper.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';

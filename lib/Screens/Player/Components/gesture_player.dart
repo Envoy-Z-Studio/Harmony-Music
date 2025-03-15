@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import 'package:harmonymusic/Screens/Player/Components/backgroud_image.dart';
+import 'package:harmonymusic/Screens/Player/Components/background_image.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/Theme/theme_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';

@@ -4,7 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Models/playlist.dart';
-import 'package:harmonymusic/Services/piped_service.dart';
+import 'package:harmonymusic/Services/streamed_service.dart';
 import 'package:harmonymusic/Screens/Library/library_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/common_dialog_widget.dart';
 import 'package:harmonymusic/CustomWidgets/Common/modified_text_field.dart';
