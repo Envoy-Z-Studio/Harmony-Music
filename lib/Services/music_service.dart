@@ -10,8 +10,8 @@ import 'package:harmonymusic/Models/album.dart';
 import 'package:harmonymusic/Services/constant.dart';
 import 'package:harmonymusic/Services/continuations.dart';
 import 'package:harmonymusic/Services/nav_parser.dart';
-import 'package:harmonymusic/Services/utils.dart';
-import 'package:harmonymusic/Utils/helper.dart';
+import 'package:harmonymusic/Helpers/utils.dart';
+import 'package:harmonymusic/Utilities/helper.dart';
 
 enum AudioQuality {
   Low,

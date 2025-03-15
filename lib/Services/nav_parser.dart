@@ -7,7 +7,7 @@ import 'package:harmonymusic/Models/album.dart';
 import 'package:harmonymusic/Models/artist.dart';
 import 'package:harmonymusic/Models/media_Item_builder.dart';
 import 'package:harmonymusic/Models/playlist.dart';
-import 'package:harmonymusic/Services/utils.dart';
+import 'package:harmonymusic/Helpers/utils.dart';
 
 const single_column = ['contents', 'singleColumnBrowseResultsRenderer'];
 const tab_content = ['tabs', 0, 'tabRenderer', 'content'];

@@ -14,11 +14,11 @@ import 'package:harmonymusic/Models/media_Item_builder.dart';
 import 'package:harmonymusic/Services/music_service.dart';
 import 'package:harmonymusic/Services/permission_service.dart';
 import 'package:harmonymusic/Services/stream_service.dart';
-import 'package:harmonymusic/UI/Screens/Library/library_controller.dart';
-import 'package:harmonymusic/UI/Screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
-import 'package:harmonymusic/UI/Screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/UI/Widgets/snackbar.dart';
-import 'package:harmonymusic/Utils/helper.dart';
+import 'package:harmonymusic/Screens/Library/library_controller.dart';
+import 'package:harmonymusic/Screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/CustomWidgets/Common/snackbar.dart';
+import 'package:harmonymusic/Utilities/helper.dart';
 //import '../models/thumbnail.dart' as th;
 
 class Downloader extends GetxService {

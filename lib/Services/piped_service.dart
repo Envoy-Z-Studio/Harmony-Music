@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import 'package:harmonymusic/Utils/helper.dart';
+import 'package:harmonymusic/Utilities/helper.dart';
 
 class PipedServices extends GetxService {
   final Map<String, dynamic> _headers = {};

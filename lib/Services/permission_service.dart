@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-import 'package:harmonymusic/Native_Bindings/android_utils.dart' show SDKInt;
+import 'package:harmonymusic/Utilities/android_utils.dart' show SDKInt;
 
 class PermissionService {
   static Future<bool> getExtStoragePermission() async {

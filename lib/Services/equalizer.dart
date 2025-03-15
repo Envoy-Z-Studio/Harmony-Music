@@ -1,6 +1,6 @@
 import 'package:jni/jni.dart';
 
-import 'package:harmonymusic/Native_Bindings/android_utils.dart';
+import 'package:harmonymusic/Utilities/android_utils.dart';
 
 class EqualizerService {
   static bool openEqualizer(int sessionId) {
