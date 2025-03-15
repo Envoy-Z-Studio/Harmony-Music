@@ -1,15 +1,16 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/models/artist.dart';
 import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/models/artist.dart';
 import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 
 class ImageWidget extends StatelessWidget {
   const ImageWidget({

@@ -1,20 +1,21 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/gestures.dart' show kSecondaryMouseButton;
 import 'package:flutter/material.dart';
+
+import 'package:audio_service/audio_service.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 import 'package:widget_marquee/widget_marquee.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:harmonymusic/models/album.dart';
 import 'package:harmonymusic/models/artist.dart';
 import 'package:harmonymusic/models/playling_from.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/ui/widgets/snackbar.dart';
 import 'package:harmonymusic/models/playlist.dart';
 import 'package:harmonymusic/ui/navigator.dart';
 import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/add_to_playlist.dart';
 import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
 import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 class ListWidget extends StatelessWidget with RemoveSongFromPlaylistMixin {

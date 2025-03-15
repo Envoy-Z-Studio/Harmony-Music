@@ -1,16 +1,17 @@
 // ignore_for_file: constant_identifier_names
 
 import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' as getx;
 import 'package:hive/hive.dart';
 
 import 'package:harmonymusic/models/album.dart';
-import 'package:harmonymusic/services/utils.dart';
-import 'package:harmonymusic/utils/helper.dart';
 import 'package:harmonymusic/services/constant.dart';
 import 'package:harmonymusic/services/continuations.dart';
 import 'package:harmonymusic/services/nav_parser.dart';
+import 'package:harmonymusic/services/utils.dart';
+import 'package:harmonymusic/utils/helper.dart';
 
 enum AudioQuality {
   Low,

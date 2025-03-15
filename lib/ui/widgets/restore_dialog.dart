@@ -1,16 +1,17 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
+
 import 'package:archive/archive_io.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:terminate_restart/terminate_restart.dart';
 
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/utils/helper.dart';
 import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/common_dialog_widget.dart';
+import 'package:harmonymusic/utils/helper.dart';
 
 class RestoreDialog extends StatelessWidget {
   const RestoreDialog({super.key});

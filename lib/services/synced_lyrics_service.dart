@@ -1,7 +1,8 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:dio/dio.dart';
-import 'package:harmonymusic/utils/helper.dart';
 import 'package:hive/hive.dart';
+
+import 'package:harmonymusic/utils/helper.dart';
 
 class SyncedLyricsService {
   static Future<Map<String, dynamic>?> getSyncedLyrics(

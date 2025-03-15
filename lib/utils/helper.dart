@@ -1,5 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/ui/navigator.dart';

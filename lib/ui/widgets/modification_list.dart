@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
 import 'package:harmonymusic/ui/screens/Artists/artist_screen_controller.dart';
 import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
 import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
-import 'package:harmonymusic/ui/widgets/sort_widget.dart' show OperationMode;
 import 'package:harmonymusic/ui/widgets/image_widget.dart';
+import 'package:harmonymusic/ui/widgets/sort_widget.dart' show OperationMode;
 
 class ModificationList extends StatelessWidget {
   const ModificationList(

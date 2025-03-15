@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/ui/screens/Search/components/desktop_search_bar.dart';
-import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
-import 'package:harmonymusic/ui/widgets/animated_screen_transition.dart';
-import 'package:harmonymusic/ui/screens/Library/library_combined.dart';
-import 'package:harmonymusic/ui/widgets/side_nav_bar.dart';
-import 'package:harmonymusic/ui/screens/Library/library.dart';
-import 'package:harmonymusic/ui/screens/Search/search_screen.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
-import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
 import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Library/library.dart';
+import 'package:harmonymusic/ui/screens/Library/library_combined.dart';
+import 'package:harmonymusic/ui/screens/Search/components/desktop_search_bar.dart';
+import 'package:harmonymusic/ui/screens/Search/search_screen.dart';
+import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/animated_screen_transition.dart';
 import 'package:harmonymusic/ui/widgets/content_list_widget.dart';
+import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
 import 'package:harmonymusic/ui/widgets/quickpickswidget.dart';
 import 'package:harmonymusic/ui/widgets/shimmer_widgets/home_shimmer.dart';
-import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen.dart';
+import 'package:harmonymusic/ui/widgets/side_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

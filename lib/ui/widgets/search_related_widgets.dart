@@ -1,11 +1,12 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+
+import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/ui/screens/Search/search_result_screen_controller.dart';
 import 'package:harmonymusic/models/album.dart';
 import 'package:harmonymusic/models/artist.dart';
 import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/ui/screens/Search/search_result_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/content_list_widget.dart';
 import 'package:harmonymusic/ui/widgets/separate_tab_item_widget.dart';
 

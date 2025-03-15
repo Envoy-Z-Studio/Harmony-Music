@@ -1,12 +1,13 @@
-import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:flutter/material.dart';
+
+import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:get/get.dart';
-import 'package:harmonymusic/ui/widgets/loader.dart';
-import 'package:harmonymusic/ui/widgets/search_related_widgets.dart';
 
 import 'package:harmonymusic/ui/navigator.dart';
-import 'package:harmonymusic/ui/widgets/separate_tab_item_widget.dart';
 import 'package:harmonymusic/ui/screens/Search/search_result_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/ui/widgets/search_related_widgets.dart';
+import 'package:harmonymusic/ui/widgets/separate_tab_item_widget.dart';
 
 class SearchResultScreenBN extends StatelessWidget {
   const SearchResultScreenBN({super.key});

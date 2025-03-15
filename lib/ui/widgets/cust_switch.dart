@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
+
 import 'package:harmonymusic/ui/utils/theme_controller.dart';
 
 class CustSwitch extends StatelessWidget {

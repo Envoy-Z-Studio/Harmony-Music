@@ -1,14 +1,15 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:harmonymusic/ui/player/components/albumart_lyrics.dart';
 import 'package:harmonymusic/ui/player/components/backgroud_image.dart';
 import 'package:harmonymusic/ui/player/components/lyrics_switch.dart';
 import 'package:harmonymusic/ui/player/components/player_control.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 
 /// Standard player widget
 ///

@@ -1,17 +1,18 @@
 import 'dart:async';
 
-import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart';
+
+import 'package:app_links/app_links.dart';
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/models/playling_from.dart';
+import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/widgets/loader.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
 import 'package:harmonymusic/ui/widgets/songinfo_bottom_sheet.dart';
 import 'package:harmonymusic/utils/helper.dart';
-import 'package:harmonymusic/ui/widgets/loader.dart';
-import 'package:harmonymusic/services/music_service.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
-import 'package:harmonymusic/ui/navigator.dart';
-import 'package:harmonymusic/ui/widgets/snackbar.dart';
 
 class AppLinksController extends GetxController with ProcessLink {
   late AppLinks _appLinks;

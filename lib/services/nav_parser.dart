@@ -3,11 +3,11 @@
 
 import 'package:audio_service/audio_service.dart';
 
-import 'package:harmonymusic/models/media_Item_builder.dart';
-import 'package:harmonymusic/services/utils.dart';
-import 'package:harmonymusic/models/artist.dart';
 import 'package:harmonymusic/models/album.dart';
+import 'package:harmonymusic/models/artist.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
 import 'package:harmonymusic/models/playlist.dart';
+import 'package:harmonymusic/services/utils.dart';
 
 const single_column = ['contents', 'singleColumnBrowseResultsRenderer'];
 const tab_content = ['tabs', 0, 'tabRenderer', 'content'];

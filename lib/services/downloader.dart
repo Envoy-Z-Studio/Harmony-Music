@@ -1,23 +1,24 @@
 import 'dart:async';
 import 'dart:io';
 
-import 'package:audio_service/audio_service.dart';
-import 'package:dio/dio.dart';
-import 'package:audiotags/audiotags.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:audio_service/audio_service.dart';
+import 'package:audiotags/audiotags.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 
-import 'package:harmonymusic/services/stream_service.dart';
-import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
-import 'package:harmonymusic/ui/widgets/snackbar.dart';
-import 'package:harmonymusic/services/permission_service.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/utils/helper.dart';
 import 'package:harmonymusic/models/media_Item_builder.dart';
-import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
 import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/services/stream_service.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/utils/helper.dart';
 //import '../models/thumbnail.dart' as th;
 
 class Downloader extends GetxService {

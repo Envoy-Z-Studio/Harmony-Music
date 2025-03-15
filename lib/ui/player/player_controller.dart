@@ -1,24 +1,26 @@
 import 'dart:async';
-import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
-import 'package:hive/hive.dart';
-import 'package:get/get.dart';
+
 import 'package:flutter/material.dart';
+
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
+import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
+import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 
+import 'package:harmonymusic/models/durationstate.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
 import 'package:harmonymusic/models/playling_from.dart';
 import 'package:harmonymusic/services/downloader.dart';
-import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/services/music_service.dart';
 import 'package:harmonymusic/services/synced_lyrics_service.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/services/windows_audio_service.dart';
-import 'package:harmonymusic/utils/helper.dart';
-import 'package:harmonymusic/models/media_Item_builder.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/ui/screens/PlaylistNAlbum/playlistnalbum_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/sliding_up_panel.dart';
-import 'package:harmonymusic/models/durationstate.dart';
-import 'package:harmonymusic/services/music_service.dart';
+import 'package:harmonymusic/ui/widgets/snackbar.dart';
+import 'package:harmonymusic/utils/helper.dart';
 
 class PlayerController extends GetxController
     with GetSingleTickerProviderStateMixin {

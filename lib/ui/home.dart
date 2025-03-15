@@ -1,21 +1,23 @@
 import 'dart:io';
-import 'package:audio_service/audio_service.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
 
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/components/mini_player.dart';
+import 'package:harmonymusic/ui/player/player.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/utils/helper.dart';
-import 'package:harmonymusic/ui/navigator.dart';
-import 'package:harmonymusic/ui/player/player.dart';
-import 'package:harmonymusic/ui/player/components/mini_player.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:harmonymusic/ui/widgets/bottom_nav_bar.dart';
 import 'package:harmonymusic/ui/widgets/scroll_to_hide.dart';
 import 'package:harmonymusic/ui/widgets/sliding_up_panel.dart';
 import 'package:harmonymusic/ui/widgets/snackbar.dart';
 import 'package:harmonymusic/ui/widgets/up_next_queue.dart';
+import 'package:harmonymusic/utils/helper.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

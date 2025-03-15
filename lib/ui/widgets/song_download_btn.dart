@@ -1,10 +1,11 @@
-import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+
+import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
-import 'package:harmonymusic/services/downloader.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:hive/hive.dart';
 
+import 'package:harmonymusic/services/downloader.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
 import 'package:harmonymusic/ui/widgets/loader.dart';
 import 'package:harmonymusic/ui/widgets/snackbar.dart';
 

@@ -4,27 +4,27 @@ import 'dart:math';
 
 import 'package:flutter/services.dart';
 
-import 'package:hive/hive.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:get/get.dart';
+import 'package:hive/hive.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:audio_service/audio_service.dart';
-
-import 'package:harmonymusic/services/equalizer.dart';
-import 'package:harmonymusic/services/stream_service.dart';
-import 'package:harmonymusic/models/hm_streaming_data.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
-import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
-import 'package:harmonymusic/services/background_task.dart';
-import 'package:harmonymusic/services/permission_service.dart';
-import 'package:harmonymusic/utils/helper.dart';
-import 'package:harmonymusic/models/media_Item_builder.dart';
-import 'package:harmonymusic/services/utils.dart';
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
 // ignore: unused_import, implementation_imports, depend_on_referenced_packages
 import "package:media_kit/src/player/platform_player.dart" show MPVLogLevel;
+import 'package:path_provider/path_provider.dart';
+
+import 'package:harmonymusic/models/hm_streaming_data.dart';
+import 'package:harmonymusic/models/media_Item_builder.dart';
+import 'package:harmonymusic/services/background_task.dart';
+import 'package:harmonymusic/services/equalizer.dart';
+import 'package:harmonymusic/services/permission_service.dart';
+import 'package:harmonymusic/services/stream_service.dart';
+import 'package:harmonymusic/services/utils.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/Home/home_screen_controller.dart';
+import 'package:harmonymusic/ui/screens/Library/library_controller.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/utils/helper.dart';
 
 Future<AudioHandler> initAudioService() async {
   return await AudioService.init(

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+
+import 'package:harmonymusic/ui/navigator.dart';
+import 'package:harmonymusic/ui/player/player_controller.dart';
+import 'package:harmonymusic/ui/screens/Artists/artist_screen_controller.dart';
 import 'package:harmonymusic/ui/screens/Artists/artist_screen_v2.dart';
 import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/animated_screen_transition.dart';
+import 'package:harmonymusic/ui/widgets/image_widget.dart';
 import 'package:harmonymusic/ui/widgets/loader.dart';
 import 'package:harmonymusic/ui/widgets/separate_tab_item_widget.dart';
-import 'package:harmonymusic/ui/player/player_controller.dart';
-import 'package:harmonymusic/ui/widgets/image_widget.dart';
-import 'package:share_plus/share_plus.dart';
-import 'package:harmonymusic/ui/navigator.dart';
 import 'package:harmonymusic/ui/widgets/snackbar.dart';
-import 'package:harmonymusic/ui/screens/Artists/artist_screen_controller.dart';
 
 class ArtistScreen extends StatelessWidget {
   const ArtistScreen({super.key});

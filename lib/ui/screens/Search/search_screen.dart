@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
+import 'package:harmonymusic/ui/navigator.dart';
 import 'package:harmonymusic/ui/screens/Search/components/search_item.dart';
+import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
 import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
 import 'package:harmonymusic/ui/widgets/modified_text_field.dart';
-import 'package:harmonymusic/ui/navigator.dart';
-import 'package:harmonymusic/ui/screens/Search/search_screen_controller.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

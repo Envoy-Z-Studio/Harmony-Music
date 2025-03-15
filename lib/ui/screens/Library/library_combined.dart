@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
-import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/ui/widgets/piped_sync_widget.dart';
-import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
 import 'package:harmonymusic/ui/screens/Library/library.dart';
+import 'package:harmonymusic/ui/screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/ui/widgets/create_playlist_dialog.dart';
+import 'package:harmonymusic/ui/widgets/piped_sync_widget.dart';
 
 class CombinedLibrary extends StatelessWidget {
   const CombinedLibrary({super.key});
