@@ -25,9 +25,7 @@ class StandardPlayer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final PlayerController playerController = Get.find<PlayerController>();
 
-    double playerArtImageSize =
-        size.width - 60; //((size.height < 750) ? 90 : 60);
-    //playerArtImageSize = playerArtImageSize > 350 ? 350 : playerArtImageSize;
+    double playerArtImageSize = size.width - 60;
     final spaceAvailableForArtImage =
         size.height - (70 + Get.mediaQuery.padding.bottom + 330);
     playerArtImageSize = playerArtImageSize > spaceAvailableForArtImage
@@ -45,14 +43,14 @@ class StandardPlayer extends StatelessWidget {
         /// Stack child
         /// Blur effect on background
         BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+          filter: ImageFilter.blur(sigmaX: 80.0, sigmaY: 80.0),
           child: Stack(
             children: [
               /// opacity effect on background
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.8),
+                    color: Theme.of(context).primaryColor.withOpacity(0.4),
                   ),
                 ),
               ),
@@ -66,10 +64,10 @@ class StandardPlayer extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor,
-                        Theme.of(context).primaryColor.withOpacity(0.4),
-                        Theme.of(context).primaryColor.withOpacity(0),
+                        Theme.of(context).primaryColor.withOpacity(0.9),
+                        Theme.of(context).primaryColor.withOpacity(0.6),
+                        Theme.of(context).primaryColor.withOpacity(0.3),
+                        Theme.of(context).primaryColor.withOpacity(0.0),
                       ],
                       begin: Alignment.bottomCenter,
                       end: Alignment.topCenter,
@@ -90,7 +88,7 @@ class StandardPlayer extends StatelessWidget {
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /// Album art with lyrics in .45  of width
+                    /// Album art with lyrics in .45 of width
                     SizedBox(
                       width: size.width * .45,
                       child: Padding(
