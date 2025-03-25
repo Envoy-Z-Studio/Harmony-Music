@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
@@ -25,38 +24,36 @@ class StandardPlayer extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final PlayerController playerController = Get.find<PlayerController>();
 
+    // Determine the optimal size for the album artwork  
     double playerArtImageSize = size.width - 60;
-    final spaceAvailableForArtImage =
+    final availableSpace =
         size.height - (70 + Get.mediaQuery.padding.bottom + 330);
-    playerArtImageSize = playerArtImageSize > spaceAvailableForArtImage
-        ? spaceAvailableForArtImage
+    playerArtImageSize = playerArtImageSize > availableSpace
+        ? availableSpace
         : playerArtImageSize;
+
     return Stack(
       children: [
-        /// Stack first child
-        /// Album art image in background covering the whole screen
-        BackgroudImage(
+        // Display background image  
+        BackgroundImage(
           key: Key("${playerController.currentSong.value?.id}_background"),
           cacheHeight: 200,
         ),
 
-        /// Stack child
-        /// Blur effect on background
+        // Apply a blur effect over the background image  
         BackdropFilter(
           filter: ImageFilter.blur(sigmaX: 80.0, sigmaY: 80.0),
           child: Stack(
             children: [
-              /// opacity effect on background
+              // Apply a semi-transparent overlay to lighten the background  
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.4),
+                    color: Theme.of(context).primaryColor.withOpacity(0.2),
                   ),
                 ),
               ),
-
-              /// used to hide queue header when player is minimized
-              /// gradient to used here
+              // Create a gradient effect at the bottom for smooth blending  
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Container(
@@ -64,9 +61,9 @@ class StandardPlayer extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).primaryColor.withOpacity(0.9),
-                        Theme.of(context).primaryColor.withOpacity(0.6),
-                        Theme.of(context).primaryColor.withOpacity(0.3),
+                        Theme.of(context).primaryColor.withOpacity(0.5),
+                        Theme.of(context).primaryColor.withOpacity(0.25),
+                        Theme.of(context).primaryColor.withOpacity(0.1),
                         Theme.of(context).primaryColor.withOpacity(0.0),
                       ],
                       begin: Alignment.bottomCenter,
@@ -80,21 +77,18 @@ class StandardPlayer extends StatelessWidget {
           ),
         ),
 
-        /// Stack child
-        /// Player content in landscape mode
+        // Main content layout based on screen orientation  
         Padding(
-          padding: const EdgeInsets.only(left: 25, right: 25),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: (context.isLandscape)
               ? Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /// Album art with lyrics in .45 of width
+                    // Album artwork and lyrics section  
                     SizedBox(
                       width: size.width * .45,
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                          bottom: 90.0,
-                        ),
+                        padding: const EdgeInsets.only(bottom: 90.0),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 40),
                           child: Center(
@@ -105,65 +99,56 @@ class StandardPlayer extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    /// Player controls in .48 of width
+                    // Player controls section  
                     SizedBox(
-                        width: size.width * .48,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              left: 10.0,
-                              right: 10,
-                              bottom: Get.mediaQuery.padding.bottom),
-                          child: const PlayerControlWidget(),
-                        ))
+                      width: size.width * .48,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                          left: 10.0,
+                          right: 10,
+                          bottom: Get.mediaQuery.padding.bottom,
+                        ),
+                        child: const PlayerControlWidget(),
+                      ),
+                    )
                   ],
                 )
-              :
-
-              /// Player content in portrait mode
-              Column(
+              : Column(
                   children: [
-                    /// Work as top padding depending on the lyrics visibility and screen size
+                    // Adjust spacing based on lyrics visibility  
                     Obx(
                       () => playerController.showLyricsflag.value
-                          ? SizedBox(
-                              height: size.height < 750 ? 60 : 90,
-                            )
-                          : SizedBox(
-                              height: size.height < 750 ? 110 : 140,
-                            ),
+                          ? SizedBox(height: size.height < 750 ? 60 : 90)
+                          : SizedBox(height: size.height < 750 ? 110 : 140),
                     ),
-
-                    /// Contains the lyrics switch and album art with lyrics
                     Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Toggle lyrics view  
                         const LyricsSwitch(),
+                        // Display album artwork and lyrics  
                         ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 500),
-                            child: AlbumArtNLyrics(
-                                playerArtImageSize: playerArtImageSize)),
+                          constraints: const BoxConstraints(maxWidth: 500),
+                          child: AlbumArtNLyrics(
+                              playerArtImageSize: playerArtImageSize),
+                        ),
                       ],
                     ),
-
-                    /// Extra space container
                     Expanded(child: Container()),
-
-                    /// Contains the player controls
+                    // Add player controls at the bottom  
                     Padding(
                       padding: EdgeInsets.only(
                           bottom: 80 + Get.mediaQuery.padding.bottom),
                       child: Container(
-                          constraints: const BoxConstraints(maxWidth: 500),
-                          child: const PlayerControlWidget()),
+                        constraints: const BoxConstraints(maxWidth: 500),
+                        child: const PlayerControlWidget(),
+                      ),
                     )
                   ],
                 ),
         ),
 
-        /// Stack child
-        /// Contains [Minimize button], Playing from [Album name], [More button] for current song context
-        /// This is not visible in mobile devices in landscape mode
+        // Display top panel with back and menu buttons if not in landscape mode on mobile  
         if (!(context.isLandscape && GetPlatform.isMobile))
           Padding(
             padding: EdgeInsets.only(
@@ -172,7 +157,7 @@ class StandardPlayer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                /// Minimize button
+                // Close button  
                 IconButton(
                   icon: const Icon(
                     Icons.keyboard_arrow_down,
@@ -180,8 +165,7 @@ class StandardPlayer extends StatelessWidget {
                   ),
                   onPressed: playerController.playerPanelController.close,
                 ),
-
-                /// Playing from [Album name]
+                // Display playing source information  
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 5, right: 5),
@@ -204,8 +188,7 @@ class StandardPlayer extends StatelessWidget {
                     ),
                   ),
                 ),
-
-                /// More button for current song context
+                // Menu button to show more options  
                 IconButton(
                   icon: const Icon(
                     Icons.more_vert,
@@ -231,7 +214,7 @@ class StandardPlayer extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          ),
       ],
     );
   }
