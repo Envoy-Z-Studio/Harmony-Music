@@ -1,28 +1,48 @@
 import 'dart:ui';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
-import 'package:harmonymusic/Screens/Player/Components/background_image.dart';
 import 'package:harmonymusic/Screens/Player/Components/lyrics_switch.dart';
 import 'package:harmonymusic/Screens/Player/Components/player_control.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
+import 'package:harmonymusic/Theme/theme_controller.dart'; // Import the theme controller
 
-/// Standard player widget
-///
-/// This widget is used to display the player in the standard mode
-///
-/// It contains the album art image, lyrics switch, album art with lyrics and player controls
-/// and is used in the [Player] widget
-class StandardPlayer extends StatelessWidget {
-  const StandardPlayer({super.key});
+class StandardPlayer extends StatefulWidget {
+  const StandardPlayer({Key? key}) : super(key: key);
+
+  @override
+  State<StandardPlayer> createState() => _StandardPlayerState();
+}
+
+class _StandardPlayerState extends State<StandardPlayer> with SingleTickerProviderStateMixin {
+  late PlayerController playerController;
+  late AnimationController _animationController;
+  late ThemeController themeController;  // Add ThemeController
+
+  @override
+  void initState() {
+    super.initState();
+    playerController = Get.find<PlayerController>();
+    themeController = Get.find<ThemeController>(); // Find the theme controller
+    _animationController = AnimationController(
+      duration: const Duration(seconds: 10),
+      vsync: this,
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final PlayerController playerController = Get.find<PlayerController>();
 
     double playerArtImageSize = size.width - 60;
     final spaceAvailableForArtImage =
@@ -30,26 +50,40 @@ class StandardPlayer extends StatelessWidget {
     playerArtImageSize = playerArtImageSize > spaceAvailableForArtImage
         ? spaceAvailableForArtImage
         : playerArtImageSize;
+
     return Stack(
       children: [
-        /// Stack first child
-        /// Album art image in background covering the whole screen
-        BackgroudImage(
-          key: Key("${playerController.currentSong.value?.id}_background"),
-          cacheHeight: 200,
+        /// Animated Gradient Background
+        AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return Obx(() => Container(  // Using Obx to listen for theme changes
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment(-1 + math.sin(_animationController.value * 2 * math.pi), 0), // Animate begin
+                  end: Alignment(1 + math.cos(_animationController.value * 2 * math.pi), 0),   // Animate end
+                  colors: [
+                    themeController.themedata.value?.primaryColor ?? Colors.grey.shade800,
+                    (themeController.themedata.value?.primaryColorDark ?? Colors.grey.shade900),
+                  ],
+                  stops: const [0.0, 1.0],
+                ),
+              ),
+            ));
+          },
         ),
 
         /// Stack child
         /// Blur effect on background
         BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 80.0, sigmaY: 80.0),
+          filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0), // Reduced blur
           child: Stack(
             children: [
               /// opacity effect on background
               Positioned.fill(
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.2),
+                    color: Theme.of(context).primaryColor.withOpacity(0.05), //Reduced opacity
                   ),
                 ),
               ),
@@ -63,9 +97,9 @@ class StandardPlayer extends StatelessWidget {
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Theme.of(context).primaryColor.withOpacity(0.5),
-                        Theme.of(context).primaryColor.withOpacity(0.25),
-                        Theme.of(context).primaryColor.withOpacity(0.1),
+                        Theme.of(context).primaryColor.withOpacity(0.2), //Reduced opacity
+                        Theme.of(context).primaryColor.withOpacity(0.1), //Reduced opacity
+                        Theme.of(context).primaryColor.withOpacity(0.05), //Reduced opacity
                         Theme.of(context).primaryColor.withOpacity(0.0),
                       ],
                       begin: Alignment.bottomCenter,
