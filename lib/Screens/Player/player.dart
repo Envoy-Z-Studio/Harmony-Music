@@ -14,9 +14,9 @@ import 'package:harmonymusic/CustomWidgets/Common/up_next_queue.dart';
 import 'package:harmonymusic/Utilities/helper.dart';
 
 /// Player screen
-/// Contains the player ui
+/// Displays the player interface
 ///
-/// Player ui can be standard player or gesture player
+/// The player interface can be either a standard player or a gesture-based player
 class Player extends StatelessWidget {
   const Player({super.key});
 
@@ -27,8 +27,8 @@ class Player extends StatelessWidget {
     final PlayerController playerController = Get.find<PlayerController>();
     final settingsScreenController = Get.find<SettingsScreenController>();
     return Scaffold(
-      /// SlidingUpPanel is used to create a panel that can slide up and down
-      /// It is used to show the current queue panel in mobile
+      /// SlidingUpPanel creates a panel that can be swiped up and down
+      /// It is used to display the queue panel on mobile
       body: Obx(
         () => SlidingUpPanel(
           boxShadow: const [],
@@ -41,11 +41,11 @@ class Player extends StatelessWidget {
               ? null
               : playerController.queuePanelController,
 
-          /// this is the header of the collapsed panel
-          /// contains the button ^ to open the queue panel
+          /// This is the header of the minimized panel
+          /// Contains the ^ button to expand the queue panel
           collapsed: InkWell(
             onTap: () {
-              /// queue open in end drawer in desktop
+              /// Queue opens in end drawer on desktop
               if (GetPlatform.isDesktop) {
                 playerController.homeScaffoldkey.currentState!.openEndDrawer();
               } else {
@@ -69,44 +69,40 @@ class Player extends StatelessWidget {
                 )),
           ),
 
-          /// Panel for queue
+          /// Panel displaying the queue
           panelBuilder: (ScrollController sc, onReorderStart, onReorderEnd) {
             playerController.scrollController = sc;
             return Stack(
               children: [
-                /// Stack first child
-                /// UpNextQueue widget contains list of songs in queue
+                /// First child of Stack
+                /// UpNextQueue widget displays the list of songs in the queue
                 UpNextQueue(
                   onReorderEnd: onReorderEnd,
                   onReorderStart: onReorderStart,
                 ),
 
-                /// Stack second child
-                /// This contains the bottom bar with queue loop, shuffle, clear queue buttons
-                /// and number of songs in queue
-                /// BackdropFilter is used to blur the background
+                /// Second child of Stack
+                /// This contains the bottom bar with options to loop the queue, shuffle, clear queue
+                /// and shows the total number of songs in the queue
+                /// BackdropFilter applies a blur effect to the background
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: ClipRRect(
                     child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      filter: ImageFilter.blur(sigmaX: 80.0, sigmaY: 80.0),
                       child: Container(
                         padding: const EdgeInsets.only(
                             top: 15, bottom: 10, left: 10, right: 10),
                         decoration: BoxDecoration(
-                            boxShadow: const [
-                              BoxShadow(blurRadius: 5, color: Colors.black54)
-                            ],
-                            color: Theme.of(context)
-                                .primaryColor
-                                .withOpacity(0.5)),
+                          color: Theme.of(context).primaryColor.withOpacity(0.5),
+                        ),
                         height: 60 + Get.mediaQuery.padding.bottom,
                         child: Align(
                           alignment: Alignment.topCenter,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              /// number of songs in queue
+                              /// Displays the total number of songs in the queue
                               Obx(
                                 () => Text(
                                   "${playerController.currentQueue.length} ${"songs".tr}",
@@ -121,7 +117,7 @@ class Player extends StatelessWidget {
                                 ),
                               ),
 
-                              /// queue loop button
+                              /// Queue loop toggle button
                               InkWell(
                                 onTap: () {
                                   playerController.toggleQueueLoopMode();
@@ -129,11 +125,9 @@ class Player extends StatelessWidget {
                                 child: Obx(
                                   () => Container(
                                     height: 30,
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 15),
+                                    padding: const EdgeInsets.symmetric(horizontal: 15),
                                     decoration: BoxDecoration(
-                                      color: playerController
-                                              .isQueueLoopModeEnabled.isFalse
+                                      color: playerController.isQueueLoopModeEnabled.isFalse
                                           ? Colors.white24
                                           : Colors.white.withOpacity(0.8),
                                       borderRadius: BorderRadius.circular(20),
@@ -143,11 +137,10 @@ class Player extends StatelessWidget {
                                 ),
                               ),
 
-                              /// queue shuffle button
+                              /// Shuffle queue button
                               InkWell(
                                 onTap: () {
-                                  if (playerController
-                                      .isShuffleModeEnabled.isTrue) {
+                                  if (playerController.isShuffleModeEnabled.isTrue) {
                                     ScaffoldMessenger.of(context).showSnackBar(
                                         snackbar(context,
                                             "queueShufflingDeniedMsg".tr,
@@ -158,34 +151,30 @@ class Player extends StatelessWidget {
                                 },
                                 child: Container(
                                   height: 30,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: const Center(
-                                      child: Icon(Icons.shuffle,
-                                          color: Colors.black)),
+                                      child: Icon(Icons.shuffle, color: Colors.black)),
                                 ),
                               ),
 
-                              /// clear queue button
+                              /// Clear queue button
                               InkWell(
                                 onTap: () {
                                   playerController.clearQueue();
                                 },
                                 child: Container(
                                   height: 30,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 15),
+                                  padding: const EdgeInsets.symmetric(horizontal: 15),
                                   decoration: BoxDecoration(
                                     color: Colors.white.withOpacity(0.8),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: const Center(
-                                      child: Icon(Icons.playlist_remove,
-                                          color: Colors.black)),
+                                      child: Icon(Icons.playlist_remove, color: Colors.black)),
                                 ),
                               ),
                             ],
@@ -199,8 +188,8 @@ class Player extends StatelessWidget {
             );
           },
 
-          /// show player ui based on selected player ui in settings
-          /// Gesture player is only applicable for mobile
+          /// Displays the player interface based on the selected player UI in settings
+          /// Gesture-based player is only applicable for mobile
           body: settingsScreenController.playerUi.value == 0
               ? const StandardPlayer()
               : const GesturePlayer(),
