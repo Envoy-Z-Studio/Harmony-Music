@@ -203,9 +203,9 @@ class PlayerControlWidget extends StatelessWidget {
             CupertinoButton(
               padding: EdgeInsets.zero,
               onPressed: () => playerController.queuePanelController.open(),
-              child: Icon(
+              child: const Icon(
                 CupertinoIcons.list_bullet,
-                color: Colors.white.withOpacity(0.8),
+                color: Colors.white,
                 size: 24,
               ),
             ),
@@ -216,7 +216,7 @@ class PlayerControlWidget extends StatelessWidget {
                     CupertinoIcons.shuffle,
                     color: playerController.isShuffleModeEnabled.value
                         ? Colors.white
-                        : Colors.white.withOpacity(0.8),
+                        : Colors.grey,
                     size: 24,
                   )),
             ),
@@ -227,7 +227,7 @@ class PlayerControlWidget extends StatelessWidget {
                     CupertinoIcons.repeat,
                     color: playerController.isLoopModeEnabled.value
                         ? Colors.white
-                        : Colors.white.withOpacity(0.8),
+                        : Colors.grey,
                     size: 24,
                   )),
             ),
