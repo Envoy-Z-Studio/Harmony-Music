@@ -5,7 +5,7 @@ import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:get/get.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import 'package:harmonymusic/Screens/Player/Components/animated_play_button.dart';
+import 'package:harmonymusic/Screens/Player/Components/play_pause_button.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 
@@ -149,7 +149,7 @@ class PlayerControlWidget extends StatelessWidget {
                 size: 40,
               ),
             ),
-            const AnimatedPlayButton(iconSize: 65),
+            const PlayPauseButton(iconSize: 65),
             CupertinoButton(
               padding: EdgeInsets.zero,
               onPressed: playerController.next,

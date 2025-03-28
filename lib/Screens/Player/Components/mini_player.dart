@@ -1,11 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:get/get.dart';
-import 'package:ionicons/ionicons.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
-import 'package:harmonymusic/Screens/Player/Components/animated_play_button.dart';
+import 'package:harmonymusic/Screens/Player/Components/play_pause_button.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/add_to_playlist.dart';
 import 'package:harmonymusic/CustomWidgets/Common/image_widget.dart';
@@ -36,6 +36,7 @@ class MiniPlayer extends StatelessWidget {
             child: Center(
               child: Column(
                 children: [
+                  // Mini Player progress bar
                   !isWideScreen
                       ? GetX<PlayerController>(
                           builder: (controller) => Container(
@@ -161,7 +162,7 @@ class MiniPlayer extends StatelessWidget {
                             ),
                           ),
                         ),
-                        //player control
+                        // Player control buttons
                         SizedBox(
                           width: isWideScreen ? 450 : 90,
                           child: Row(
@@ -177,8 +178,8 @@ class MiniPlayer extends StatelessWidget {
                                         icon: Obx(() => Icon(
                                               playerController
                                                       .isCurrentSongFav.isFalse
-                                                  ? Icons.favorite_border
-                                                  : Icons.favorite,
+                                                  ? CupertinoIcons.heart
+                                                  : CupertinoIcons.heart_fill,
                                               color: Theme.of(context)
                                                   .textTheme
                                                   .titleMedium!
@@ -189,7 +190,7 @@ class MiniPlayer extends StatelessWidget {
                                         onPressed:
                                             playerController.toggleShuffleMode,
                                         icon: Obx(() => Icon(
-                                              Ionicons.shuffle,
+                                              CupertinoIcons.shuffle,
                                               color: playerController
                                                       .isShuffleModeEnabled
                                                       .value
@@ -218,7 +219,7 @@ class MiniPlayer extends StatelessWidget {
                                           ? null
                                           : playerController.prev,
                                       child: Icon(
-                                        Icons.skip_previous,
+                                        CupertinoIcons.backward_fill,
                                         color: Theme.of(context)
                                             .textTheme
                                             .titleMedium!
@@ -237,13 +238,13 @@ class MiniPlayer extends StatelessWidget {
                                       width: 58,
                                       height: 58,
                                       child: Center(
-                                          child: AnimatedPlayButton(
+                                          child: PlayPauseButton(
                                         iconSize: isWideScreen ? 43 : 35,
                                       )))
                                   : SizedBox.square(
                                       dimension: 50,
                                       child: Center(
-                                          child: AnimatedPlayButton(
+                                          child: PlayPauseButton(
                                         iconSize: isWideScreen ? 43 : 35,
                                       ))),
                               SizedBox(
@@ -266,7 +267,7 @@ class MiniPlayer extends StatelessWidget {
                                           ? null
                                           : playerController.next,
                                       child: Icon(
-                                        Icons.skip_next,
+                                        CupertinoIcons.forward_fill,
                                         color: isLastSong
                                             ? Theme.of(context)
                                                 .textTheme
@@ -289,7 +290,7 @@ class MiniPlayer extends StatelessWidget {
                                         onPressed:
                                             playerController.toggleLoopMode,
                                         icon: Icon(
-                                          Icons.all_inclusive,
+                                          CupertinoIcons.repeat,
                                           color: playerController
                                                   .isLoopModeEnabled.value
                                               ? Theme.of(context)
@@ -320,7 +321,8 @@ class MiniPlayer extends StatelessWidget {
                                           playerController
                                               .isDesktopLyricsDialogOpen = true;
                                         },
-                                        icon: Icon(Icons.lyrics_outlined,
+                                        icon: Icon(
+                                            CupertinoIcons.music_house_fill,
                                             color: Theme.of(context)
                                                 .textTheme
                                                 .titleLarge!
@@ -359,11 +361,14 @@ class MiniPlayer extends StatelessWidget {
                                                 onTap: playerController.mute,
                                                 child: Icon(
                                                   volume == 0
-                                                      ? Icons.volume_off
+                                                      ? CupertinoIcons
+                                                          .volume_mute
                                                       : volume > 0 &&
                                                               volume < 50
-                                                          ? Icons.volume_down
-                                                          : Icons.volume_up,
+                                                          ? CupertinoIcons
+                                                              .volume_down
+                                                          : CupertinoIcons
+                                                              .volume_up,
                                                   size: 20,
                                                 ),
                                               )),
@@ -406,7 +411,8 @@ class MiniPlayer extends StatelessWidget {
                                                 .homeScaffoldkey.currentState!
                                                 .openEndDrawer();
                                           },
-                                          icon: const Icon(Icons.queue_music),
+                                          icon: const Icon(
+                                              CupertinoIcons.music_note_list),
                                         ),
                                         if (size.width > 860)
                                           Padding(
@@ -440,8 +446,8 @@ class MiniPlayer extends StatelessWidget {
                                               },
                                               icon: Icon(playerController
                                                       .isSleepTimerActive.isTrue
-                                                  ? Icons.timer
-                                                  : Icons.timer_outlined),
+                                                  ? CupertinoIcons.timer_fill
+                                                  : CupertinoIcons.timer),
                                             ),
                                           ),
                                         const SizedBox(
@@ -467,7 +473,8 @@ class MiniPlayer extends StatelessWidget {
                                                   AddToPlaylistController>());
                                             }
                                           },
-                                          icon: const Icon(Icons.playlist_add),
+                                          icon: const Icon(CupertinoIcons
+                                              .list_bullet_below_rectangle),
                                         ),
                                         if (size.width > 965)
                                           IconButton(
@@ -485,7 +492,8 @@ class MiniPlayer extends StatelessWidget {
                                                 );
                                               }
                                             },
-                                            icon: const Icon(Icons.info,
+                                            icon: const Icon(
+                                                CupertinoIcons.info_circle,
                                                 size: 22),
                                           ),
                                       ],
