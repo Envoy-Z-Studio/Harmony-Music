@@ -37,37 +37,32 @@ class Player extends StatelessWidget {
       body: Obx(
         () => SlidingUpPanel(
           boxShadow: const [],
-          minHeight: settingsScreenController.playerUi.value == 0
-              ? 65 + Get.mediaQuery.padding.bottom
-              : 0,
+          minHeight: 0,
           maxHeight: size.height,
-          isDraggable: !GetPlatform.isDesktop,
+          isDraggable: true,
           controller: GetPlatform.isDesktop
               ? null
               : playerController.queuePanelController,
-
-          // Collapsed Queue Panel Header
-          collapsed: InkWell(
-            onTap: () {
-              if (GetPlatform.isDesktop) {
-                playerController.homeScaffoldkey.currentState!.openEndDrawer();
-              } else {
-                playerController.queuePanelController.open();
-              }
-            },
-            child: Container(
-              color: Theme.of(context).primaryColor,
-              child: Center(
-                child: Icon(
-                  color: Theme.of(context).textTheme.titleMedium!.color,
-                  Icons.keyboard_arrow_up,
-                  size: 40,
-                ),
-              ),
-            ),
-          ),
-
-          // Queue Panel Content
+          header: (playerController.queuePanelController.panelPosition > 0.0)
+              ? Container(
+                  height: 20,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor.withOpacity(0.5),
+                    borderRadius:
+                        const BorderRadius.vertical(top: Radius.circular(10)),
+                  ),
+                  child: Center(
+                    child: Container(
+                      width: 40,
+                      height: 5,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(2.5),
+                      ),
+                    ),
+                  ),
+                )
+              : null,
           panelBuilder: (ScrollController sc, onReorderStart, onReorderEnd) {
             playerController.scrollController = sc;
             return Stack(
