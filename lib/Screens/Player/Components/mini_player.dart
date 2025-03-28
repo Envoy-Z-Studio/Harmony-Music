@@ -390,8 +390,8 @@ class MiniPlayer extends StatelessWidget {
                                                         .volume.value /
                                                     100,
                                                 onChanged: (value) {
-                                                  playerController.setVolume(
-                                                      (value * 100).toInt());
+                                                  playerController
+                                                      .setVolume(value * 1.0);
                                                 },
                                               ),
                                             ),

@@ -7,6 +7,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
+import 'package:flutter_volume_controller/flutter_volume_controller.dart';
 
 import 'package:harmonymusic/Models/duration_state.dart';
 import 'package:harmonymusic/Models/media_item_builder.dart';
@@ -24,10 +25,14 @@ import 'package:harmonymusic/Utilities/helper.dart';
 
 class PlayerController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  // Audio handler instance for audio playback.
   final _audioHandler = Get.find<AudioHandler>();
+  // Music services instance for fetching music data.
   final _musicServices = Get.find<MusicServices>();
+  // Current queue of media items to be played.
   final currentQueue = <MediaItem>[].obs;
 
+  // Observables for UI control and state management.
   final playerPaneOpacity = (1.0).obs;
   final isPlayerpanelTopVisible = true.obs;
   final isPanelGTHOpened = false.obs;
@@ -46,7 +51,8 @@ class PlayerController extends GetxController
   final timerDurationLeft = 0.obs;
   final isSleepTimerActive = false.obs;
   final isSleepEndOfSongActive = false.obs;
-  final volume = 100.obs;
+  // Volume level, using RxDouble for reactive updates in UI.
+  final volume = 1.0.obs;
 
   final progressBarStatus = ProgressBarState(
           buffered: Duration.zero, current: Duration.zero, total: Duration.zero)
@@ -96,6 +102,7 @@ class PlayerController extends GetxController
     super.onReady();
   }
 
+  // Initialize the controller.
   void _init() async {
     //_createAppDocDir();
     _listenForChangesInPlayerState();
@@ -110,6 +117,11 @@ class PlayerController extends GetxController
     isShuffleModeEnabled.value = appPrefs.get("isShuffleModeEnabled") ?? false;
     isQueueLoopModeEnabled.value =
         appPrefs.get("queueLoopModeEnabled") ?? false;
+
+    // Initialize volume from system settings.
+    FlutterVolumeController.getVolume().then((value) {
+      volume.value = value ?? 1.0;
+    });
 
     if (GetPlatform.isDesktop) {
       setVolume(appPrefs.get("volume") ?? 100);
@@ -582,10 +594,10 @@ class PlayerController extends GetxController
         .put("queueLoopModeEnabled", isQueueLoopModeEnabled.value);
   }
 
-  Future<void> setVolume(int value) async {
-    _audioHandler.customAction("setVolume", {"value": value});
+  // Function to set the volume and persist it to Hive.
+  Future<void> setVolume(double value) async {
+    FlutterVolumeController.setVolume(value);
     volume.value = value;
-    await Hive.box("AppPrefs").put("volume", value);
   }
 
   Future<void> mute() async {
@@ -600,7 +612,7 @@ class PlayerController extends GetxController
       }
     }
     _audioHandler.customAction("setVolume", {"value": vol!});
-    volume.value = vol;
+    volume.value = vol.toDouble();
   }
 
   Future<void> _checkFav() async {

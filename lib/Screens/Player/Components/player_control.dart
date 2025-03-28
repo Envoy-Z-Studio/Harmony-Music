@@ -10,7 +10,7 @@ import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 
 class PlayerControlWidget extends StatelessWidget {
-  const PlayerControlWidget({Key? key});
+  const PlayerControlWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -173,21 +173,34 @@ class PlayerControlWidget extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Icon(CupertinoIcons.speaker_fill,
                   color: Colors.white, size: 18),
               Expanded(
                 child: Obx(() {
-                  return CupertinoSlider(
-                    min: 0,
-                    max: 1,
-                    value: playerController.volume.value.toDouble(),
-                    onChanged: (double newValue) =>
-                        playerController.setVolume(newValue.toInt()),
-                    activeColor: Colors.white,
-                    thumbColor: Colors.white,
+                  return SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      trackHeight: 4.5,
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: Colors.white.withOpacity(0.3),
+                      thumbColor: Colors.white,
+                      overlayColor: Colors.white.withOpacity(0.3),
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 7),
+                      overlayShape:
+                          const RoundSliderOverlayShape(overlayRadius: 14),
+                    ),
+                    child: CupertinoSlider(
+                      min: 0,
+                      max: 1,
+                      value: playerController.volume.value,
+                      onChanged: (double newValue) =>
+                          playerController.setVolume(newValue),
+                      activeColor: Colors.white,
+                      thumbColor: Colors.white,
+                    ),
                   );
                 }),
               ),
