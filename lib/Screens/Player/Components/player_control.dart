@@ -10,11 +10,12 @@ import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 
 class PlayerControlWidget extends StatelessWidget {
-  const PlayerControlWidget({super.key});
+  const PlayerControlWidget({Key? key});
 
   @override
   Widget build(BuildContext context) {
     final PlayerController playerController = Get.find<PlayerController>();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,9 +57,7 @@ class PlayerControlWidget extends StatelessWidget {
                           style: Theme.of(context).textTheme.labelMedium!,
                         ),
                       ),
-                      const SizedBox(
-                        height: 5,
-                      ),
+                      const SizedBox(height: 5),
                       Marquee(
                         delay: const Duration(milliseconds: 300),
                         duration: const Duration(seconds: 10),
@@ -143,17 +142,6 @@ class PlayerControlWidget extends StatelessWidget {
           children: [
             CupertinoButton(
               padding: EdgeInsets.zero,
-              onPressed: playerController.toggleShuffleMode,
-              child: Obx(() => Icon(
-                    CupertinoIcons.shuffle,
-                    size: 18,
-                    color: playerController.isShuffleModeEnabled.value
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.3),
-                  )),
-            ),
-            CupertinoButton(
-              padding: EdgeInsets.zero,
               onPressed: playerController.prev,
               child: const Icon(
                 CupertinoIcons.backward_fill,
@@ -161,9 +149,7 @@ class PlayerControlWidget extends StatelessWidget {
                 size: 40,
               ),
             ),
-            const AnimatedPlayButton(
-              iconSize: 65,
-            ),
+            const AnimatedPlayButton(iconSize: 65),
             CupertinoButton(
               padding: EdgeInsets.zero,
               onPressed: playerController.next,
@@ -181,20 +167,9 @@ class PlayerControlWidget extends StatelessWidget {
                 );
               }),
             ),
-            CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: playerController.toggleLoopMode,
-              child: Obx(() => Icon(
-                    CupertinoIcons.repeat,
-                    size: 18,
-                    color: playerController.isLoopModeEnabled.value
-                        ? Colors.white
-                        : Colors.white.withOpacity(0.3),
-                  )),
-            ),
           ],
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           child: Row(
@@ -220,6 +195,43 @@ class PlayerControlWidget extends StatelessWidget {
                   color: Colors.white, size: 22),
             ],
           ),
+        ),
+        const SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: () => playerController.queuePanelController.open(),
+              child: Icon(
+                CupertinoIcons.list_bullet,
+                color: Colors.white.withOpacity(0.8),
+                size: 24,
+              ),
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: playerController.toggleShuffleMode,
+              child: Obx(() => Icon(
+                    CupertinoIcons.shuffle,
+                    color: playerController.isShuffleModeEnabled.value
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.8),
+                    size: 24,
+                  )),
+            ),
+            CupertinoButton(
+              padding: EdgeInsets.zero,
+              onPressed: playerController.toggleLoopMode,
+              child: Obx(() => Icon(
+                    CupertinoIcons.repeat,
+                    color: playerController.isLoopModeEnabled.value
+                        ? Colors.white
+                        : Colors.white.withOpacity(0.8),
+                    size: 24,
+                  )),
+            ),
+          ],
         ),
       ],
     );
