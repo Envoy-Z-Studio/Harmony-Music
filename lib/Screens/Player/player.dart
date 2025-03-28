@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
@@ -39,30 +38,18 @@ class Player extends StatelessWidget {
           boxShadow: const [],
           minHeight: 0,
           maxHeight: size.height,
-          isDraggable: true,
+          isDraggable: true, // Enable manual dragging to close
           controller: GetPlatform.isDesktop
               ? null
               : playerController.queuePanelController,
-          header: (playerController.queuePanelController.panelPosition > 0.0)
-              ? Container(
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor.withOpacity(0.5),
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(10)),
-                  ),
-                  child: Center(
-                    child: Container(
-                      width: 40,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.5),
-                        borderRadius: BorderRadius.circular(2.5),
-                      ),
-                    ),
-                  ),
-                )
-              : null,
+          snapPoint: 0.3, // Optional: Add a snap point
+          parallaxEnabled: true,
+          parallaxOffset: 0.5, // Adjust as needed
+          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+          // Collapsed Queue Panel Header -  Now completely hidden
+          collapsed: const SizedBox.shrink(), //  Hide it completely
+
+          // Queue Panel Content
           panelBuilder: (ScrollController sc, onReorderStart, onReorderEnd) {
             playerController.scrollController = sc;
             return Stack(
