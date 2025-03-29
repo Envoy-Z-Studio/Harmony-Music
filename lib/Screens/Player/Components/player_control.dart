@@ -114,11 +114,11 @@ class PlayerControlWidget extends StatelessWidget {
         Obx(() {
           final status = playerController.progressBarStatus.value;
           return Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: SizedBox(
               width: double.infinity,
               child: InteractiveSlider(
+                padding: EdgeInsets.zero,
                 initialProgress: status.current.inSeconds.toDouble(),
                 max: status.total.inSeconds.toDouble(),
                 backgroundColor: Colors.grey[800]!,
@@ -177,6 +177,7 @@ class PlayerControlWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Obx(() {
             return InteractiveSlider(
+              padding: EdgeInsets.zero,
               initialProgress: playerController.volume.value * 100,
               max: 100,
               backgroundColor: Colors.grey[800]!,
