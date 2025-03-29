@@ -1,6 +1,8 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
@@ -22,7 +24,7 @@ class Player extends StatelessWidget {
     printINFO("player");
     final size = MediaQuery.of(context).size;
     final PlayerController playerController = Get.find<PlayerController>();
-    final settingsScreenController = Get.find<SettingsScreenController>();
+    Get.find<SettingsScreenController>();
 
     // Dynamically calculate album art size based on screen size
     double playerArtImageSize = size.width - 70;
@@ -38,16 +40,16 @@ class Player extends StatelessWidget {
           boxShadow: const [],
           minHeight: 0,
           maxHeight: size.height,
-          isDraggable: true, // Enable manual dragging to close
+          isDraggable: true,
           controller: GetPlatform.isDesktop
               ? null
               : playerController.queuePanelController,
-          snapPoint: 0.3, // Optional: Add a snap point
+          snapPoint: 0.3,
           parallaxEnabled: true,
-          parallaxOffset: 0.5, // Adjust as needed
-          borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-          // Collapsed Queue Panel Header -  Now completely hidden
-          collapsed: const SizedBox.shrink(), //  Hide it completely
+          parallaxOffset: 0.5,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+          // Collapsed Queue Panel Header
+          collapsed: const SizedBox.shrink(),
 
           // Queue Panel Content
           panelBuilder: (ScrollController sc, onReorderStart, onReorderEnd) {
@@ -138,7 +140,7 @@ class Player extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: const Center(
-                                    child: Icon(Icons.shuffle,
+                                    child: Icon(CupertinoIcons.shuffle,
                                         color: Colors.black)),
                               ),
                             ),
@@ -155,11 +157,31 @@ class Player extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(20),
                                 ),
                                 child: const Center(
-                                    child: Icon(Icons.playlist_remove,
+                                    child: Icon(CupertinoIcons.text_badge_minus,
                                         color: Colors.black)),
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                // Mini Pill
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                        child: Container(
+                          width: 60,
+                          height: 8,
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade600.withOpacity(0.5),
+                          ),
                         ),
                       ),
                     ),
@@ -355,6 +377,33 @@ class Player extends StatelessWidget {
                         ],
                       ),
                     ],
+                  ),
+                )
+              // Mini Pill
+              else
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: Get.mediaQuery.padding.top + 20,
+                      left: 10,
+                      right: 10),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                          child: Container(
+                            width: 60,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: Colors.grey.shade600.withOpacity(0.5),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 )
             ],
