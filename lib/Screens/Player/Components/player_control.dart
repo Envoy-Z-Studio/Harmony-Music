@@ -23,47 +23,55 @@ class PlayerControlWidget extends StatelessWidget {
       children: [
         // Song Information (Title, Artist, Favorite, More)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                child: ShaderMask(
-                  shaderCallback: (rect) {
-                    return const LinearGradient(
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                      colors: [Colors.white, Colors.white, Colors.transparent],
-                    ).createShader(
-                        Rect.fromLTWH(0, 0, rect.width, rect.height));
-                  },
-                  blendMode: BlendMode.dstIn,
-                  child: Obx(() {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Marquee(
-                          delay: const Duration(milliseconds: 300),
-                          duration: const Duration(seconds: 10),
-                          id: "${playerController.currentSong.value}_title",
-                          child: Text(
-                            playerController.currentSong.value?.title ?? "NA",
-                            style: Theme.of(context).textTheme.labelMedium!,
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: ShaderMask(
+                    shaderCallback: (rect) {
+                      return const LinearGradient(
+                        begin: Alignment.centerLeft,
+                        end: Alignment.centerRight,
+                        colors: [
+                          Colors.white,
+                          Colors.white,
+                          Colors.transparent
+                        ],
+                      ).createShader(
+                          Rect.fromLTWH(0, 0, rect.width, rect.height));
+                    },
+                    blendMode: BlendMode.dstIn,
+                    child: Obx(() {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Marquee(
+                            delay: const Duration(milliseconds: 300),
+                            duration: const Duration(seconds: 10),
+                            id: "${playerController.currentSong.value}_title",
+                            child: Text(
+                              playerController.currentSong.value?.title ?? "NA",
+                              style: Theme.of(context).textTheme.labelMedium!,
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 5),
-                        Marquee(
-                          delay: const Duration(milliseconds: 300),
-                          duration: const Duration(seconds: 10),
-                          id: "${playerController.currentSong.value}_subtitle",
-                          child: Text(
-                            playerController.currentSong.value?.artist ?? "NA",
-                            style: Theme.of(context).textTheme.labelSmall,
+                          const SizedBox(height: 5),
+                          Marquee(
+                            delay: const Duration(milliseconds: 300),
+                            duration: const Duration(seconds: 10),
+                            id: "${playerController.currentSong.value}_subtitle",
+                            child: Text(
+                              playerController.currentSong.value?.artist ??
+                                  "NA",
+                              style: Theme.of(context).textTheme.labelSmall,
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  }),
+                        ],
+                      );
+                    }),
+                  ),
                 ),
               ),
               Row(
@@ -119,7 +127,7 @@ class PlayerControlWidget extends StatelessWidget {
 
         // Progress Bar
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Column(
             children: [
               SliderTheme(
@@ -204,11 +212,11 @@ class PlayerControlWidget extends StatelessWidget {
           ],
         ),
 
-        const SizedBox(height: 10),
+        const SizedBox(height: 25),
 
         // Volume Control
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -241,42 +249,44 @@ class PlayerControlWidget extends StatelessWidget {
             ],
           ),
         ),
-
-        const SizedBox(height: 20),
+        const Spacer(),
 
         // Bottom Controls
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: () => playerController.queuePanelController.open(),
-              child: const Icon(CupertinoIcons.list_bullet,
-                  color: Colors.white, size: 24),
-            ),
-            CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: playerController.toggleShuffleMode,
-              child: Obx(() => Icon(
-                    CupertinoIcons.shuffle,
-                    color: playerController.isShuffleModeEnabled.value
-                        ? Colors.white
-                        : Colors.grey,
-                    size: 24,
-                  )),
-            ),
-            CupertinoButton(
-              padding: EdgeInsets.zero,
-              onPressed: playerController.toggleLoopMode,
-              child: Obx(() => Icon(
-                    CupertinoIcons.repeat,
-                    color: playerController.isLoopModeEnabled.value
-                        ? Colors.white
-                        : Colors.grey,
-                    size: 24,
-                  )),
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: () => playerController.queuePanelController.open(),
+                child: const Icon(CupertinoIcons.list_bullet,
+                    color: Colors.white, size: 24),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: playerController.toggleShuffleMode,
+                child: Obx(() => Icon(
+                      CupertinoIcons.shuffle,
+                      color: playerController.isShuffleModeEnabled.value
+                          ? Colors.white
+                          : Colors.grey,
+                      size: 24,
+                    )),
+              ),
+              CupertinoButton(
+                padding: EdgeInsets.zero,
+                onPressed: playerController.toggleLoopMode,
+                child: Obx(() => Icon(
+                      CupertinoIcons.repeat,
+                      color: playerController.isLoopModeEnabled.value
+                          ? Colors.white
+                          : Colors.grey,
+                      size: 24,
+                    )),
+              ),
+            ],
+          ),
         ),
       ],
     );
