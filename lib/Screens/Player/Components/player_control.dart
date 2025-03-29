@@ -114,41 +114,32 @@ class PlayerControlWidget extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Progress Bar
+// Progress Bar
         Obx(() {
           final status = playerController.progressBarStatus.value;
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Column(
-              children: [
-                InteractiveSlider(
-                  initialProgress: status.current.inSeconds.toDouble(),
-                  max: status.total.inSeconds.toDouble(),
-                  backgroundColor: Colors.grey[800]!,
-                  foregroundColor: Colors.grey[300]!,
-                  onChanged: (value) {
-                    playerController.seek(Duration(seconds: value.toInt()));
-                  },
+            child: InteractiveSlider(
+              initialProgress: status.current.inSeconds.toDouble(),
+              max: status.total.inSeconds.toDouble(),
+              backgroundColor: Colors.grey[800]!,
+              foregroundColor: Colors.grey[300]!,
+              iconPosition: IconPosition.below,
+              startIcon: Text(
+                _formatDuration(status.current),
+                style: textTheme.labelSmall?.copyWith(
+                  color: Colors.grey[300],
                 ),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      _formatDuration(status.current),
-                      style: textTheme.labelSmall?.copyWith(
-                        color: Colors.grey[300],
-                      ),
-                    ),
-                    Text(
-                      _formatDuration(status.total),
-                      style: textTheme.labelSmall?.copyWith(
-                        color: Colors.grey[300],
-                      ),
-                    ),
-                  ],
+              ),
+              endIcon: Text(
+                _formatDuration(status.total),
+                style: textTheme.labelSmall?.copyWith(
+                  color: Colors.grey[300],
                 ),
-              ],
+              ),
+              onChanged: (value) {
+                playerController.seek(Duration(seconds: value.toInt()));
+              },
             ),
           );
         }),
