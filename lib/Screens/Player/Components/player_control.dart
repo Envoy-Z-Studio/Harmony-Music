@@ -22,7 +22,6 @@ class PlayerControlWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Top Section: Song Title, Artist, Favorite & More Button
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -64,7 +63,6 @@ class PlayerControlWidget extends StatelessWidget {
                 }),
               ),
             ),
-            // Favorite & More Button with Blur Background
             Row(
               children: [
                 _buildBlurredCircle(
@@ -112,13 +110,11 @@ class PlayerControlWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
-
-// Progress Bar
+        const SizedBox(height: 12),
         Obx(() {
           final status = playerController.progressBarStatus.value;
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: InteractiveSlider(
               initialProgress: status.current.inSeconds.toDouble(),
               max: status.total.inSeconds.toDouble(),
@@ -143,9 +139,7 @@ class PlayerControlWidget extends StatelessWidget {
             ),
           );
         }),
-        const SizedBox(height: 20),
-
-        // Player Controls: Previous, Play/Pause, Next
+        const SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -174,11 +168,9 @@ class PlayerControlWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 20),
-
-        // Volume Control
+        const SizedBox(height: 12),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Obx(() {
             return InteractiveSlider(
               initialProgress: playerController.volume.value * 100,
@@ -201,9 +193,7 @@ class PlayerControlWidget extends StatelessWidget {
             );
           }),
         ),
-        const SizedBox(height: 20),
-
-        // Bottom Controls: Queue, Shuffle, Loop
+        const SizedBox(height: 12),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -240,32 +230,30 @@ class PlayerControlWidget extends StatelessWidget {
       ],
     );
   }
+}
 
-// Helper method for blurred circular background
-  Widget _buildBlurredCircle(Widget child) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(13),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          width: 26,
-          height: 26,
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3),
-            shape: BoxShape.circle,
-          ),
-          child: Center(child: child),
+Widget _buildBlurredCircle(Widget child) {
+  return ClipRRect(
+    borderRadius: BorderRadius.circular(15),
+    child: BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+      child: Container(
+        width: 30,
+        height: 30,
+        padding: const EdgeInsets.all(6),
+        decoration: BoxDecoration(
+          color: Colors.grey.withOpacity(0.3),
+          shape: BoxShape.circle,
         ),
+        child: Center(child: child),
       ),
-    );
-  }
+    ),
+  );
+}
 
-  // Helper method to format duration as MM:SS
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$minutes:$seconds";
-  }
+String _formatDuration(Duration duration) {
+  String twoDigits(int n) => n.toString().padLeft(2, '0');
+  final minutes = twoDigits(duration.inMinutes.remainder(60));
+  final seconds = twoDigits(duration.inSeconds.remainder(60));
+  return "$minutes:$seconds";
 }
