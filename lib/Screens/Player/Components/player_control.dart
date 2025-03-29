@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:ui';
 
-import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
 import 'package:get/get.dart';
+import 'package:interactive_slider/interactive_slider.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/play_pause_button.dart';
@@ -17,6 +16,7 @@ class PlayerControlWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final PlayerController playerController = Get.find<PlayerController>();
+    final textTheme = Theme.of(context).textTheme;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +46,7 @@ class PlayerControlWidget extends StatelessWidget {
                         id: "${playerController.currentSong.value}_title",
                         child: Text(
                           playerController.currentSong.value?.title ?? "NA",
-                          style: Theme.of(context).textTheme.labelMedium!,
+                          style: textTheme.labelMedium!,
                         ),
                       ),
                       const SizedBox(height: 5),
@@ -56,7 +56,7 @@ class PlayerControlWidget extends StatelessWidget {
                         id: "${playerController.currentSong.value}_subtitle",
                         child: Text(
                           playerController.currentSong.value?.artist ?? "NA",
-                          style: Theme.of(context).textTheme.labelSmall,
+                          style: textTheme.labelSmall,
                         ),
                       )
                     ],
@@ -114,24 +114,45 @@ class PlayerControlWidget extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Progress Bar
-        GetX<PlayerController>(builder: (controller) {
-          return ProgressBar(
-            thumbRadius: 0,
-            barHeight: 4.5,
-            baseBarColor: Colors.grey[800],
-            bufferedBarColor: Colors.grey[600],
-            progressBarColor: Colors.grey[300],
-            thumbColor: Colors.transparent,
-            timeLabelTextStyle:
-                TextStyle(fontSize: 14, color: Colors.grey[300]),
-            progress: controller.progressBarStatus.value.current,
-            total: controller.progressBarStatus.value.total,
-            buffered: controller.progressBarStatus.value.buffered,
-            onSeek: controller.seek,
+        // Progress Bar with InteractiveSlider - REPLACE THIS SECTION
+        Obx(() {
+          final status = playerController.progressBarStatus.value;
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Column(
+              children: [
+                InteractiveSlider(
+                  initialProgress: status.current.inSeconds.toDouble(),
+                  max: status.total.inSeconds.toDouble(),
+                  backgroundColor: Colors.grey[800]!,
+                  foregroundColor: Colors.grey[300]!,
+                  onChanged: (value) {
+                    playerController.seek(Duration(seconds: value.toInt()));
+                  },
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      _formatDuration(status.current),
+                      style: textTheme.labelSmall?.copyWith(
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                    Text(
+                      _formatDuration(status.total),
+                      style: textTheme.labelSmall?.copyWith(
+                        color: Colors.grey[300],
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           );
         }),
-        const SizedBox(height: 25),
+        const SizedBox(height: 20),
 
         // Player Controls: Previous, Play/Pause, Next
         Row(
@@ -162,44 +183,36 @@ class PlayerControlWidget extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
 
-        // Volume Control
+        // Volume Control with InteractiveSlider
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Icon(CupertinoIcons.speaker_fill,
                   color: Colors.grey, size: 20),
+              const SizedBox(width: 12),
               Expanded(
                 child: Obx(() {
-                  return SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      trackHeight: 4.5,
-                      activeTrackColor: Colors.grey[300],
-                      inactiveTrackColor: Colors.grey[800],
-                      thumbColor: Colors.transparent,
-                      thumbShape:
-                          const RoundSliderThumbShape(enabledThumbRadius: 0),
-                    ),
-                    child: CupertinoSlider(
-                      min: 0,
-                      max: 1,
-                      value: playerController.volume.value,
-                      onChanged: (double newValue) =>
-                          playerController.setVolume(newValue),
-                      activeColor: Colors.grey[300],
-                    ),
+                  return InteractiveSlider(
+                    initialProgress: playerController.volume.value * 100,
+                    max: 100,
+                    backgroundColor: Colors.grey[800]!,
+                    foregroundColor: Colors.grey[300]!,
+                    onChanged: (value) {
+                      playerController.setVolume(value / 100);
+                    },
                   );
                 }),
               ),
+              const SizedBox(width: 12),
               const Icon(CupertinoIcons.speaker_3_fill,
                   color: Colors.grey, size: 22),
             ],
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
 
         // Bottom Controls: Queue, Shuffle, Loop
         Row(
@@ -255,5 +268,13 @@ class PlayerControlWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  // Helper method to format duration as MM:SS
+  String _formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, '0');
+    final minutes = twoDigits(duration.inMinutes.remainder(60));
+    final seconds = twoDigits(duration.inSeconds.remainder(60));
+    return "$minutes:$seconds";
   }
 }
