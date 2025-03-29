@@ -114,28 +114,32 @@ class PlayerControlWidget extends StatelessWidget {
         Obx(() {
           final status = playerController.progressBarStatus.value;
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: InteractiveSlider(
-              initialProgress: status.current.inSeconds.toDouble(),
-              max: status.total.inSeconds.toDouble(),
-              backgroundColor: Colors.grey[800]!,
-              foregroundColor: Colors.grey[300]!,
-              iconPosition: IconPosition.below,
-              startIcon: Text(
-                _formatDuration(status.current),
-                style: textTheme.labelSmall?.copyWith(
-                  color: Colors.grey[300],
+            padding: const EdgeInsets.symmetric(
+                horizontal: 16.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: InteractiveSlider(
+                initialProgress: status.current.inSeconds.toDouble(),
+                max: status.total.inSeconds.toDouble(),
+                backgroundColor: Colors.grey[800]!,
+                foregroundColor: Colors.grey[300]!,
+                iconPosition: IconPosition.below,
+                startIcon: Text(
+                  _formatDuration(status.current),
+                  style: textTheme.labelSmall?.copyWith(
+                    color: Colors.grey[300],
+                  ),
                 ),
-              ),
-              endIcon: Text(
-                _formatDuration(status.total),
-                style: textTheme.labelSmall?.copyWith(
-                  color: Colors.grey[300],
+                endIcon: Text(
+                  _formatDuration(status.total),
+                  style: textTheme.labelSmall?.copyWith(
+                    color: Colors.grey[300],
+                  ),
                 ),
+                onChanged: (value) {
+                  playerController.seek(Duration(seconds: value.toInt()));
+                },
               ),
-              onChanged: (value) {
-                playerController.seek(Duration(seconds: value.toInt()));
-              },
             ),
           );
         }),
