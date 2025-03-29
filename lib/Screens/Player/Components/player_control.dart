@@ -250,19 +250,21 @@ class PlayerControlWidget extends StatelessWidget {
     );
   }
 
-  // Helper method for blurred circular background
+// Helper method for blurred circular background
   Widget _buildBlurredCircle(Widget child) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(13),
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
-          padding: const EdgeInsets.all(8),
+          width: 26,
+          height: 26,
+          padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
             color: Colors.grey.withOpacity(0.3),
             shape: BoxShape.circle,
           ),
-          child: child,
+          child: Center(child: child),
         ),
       ),
     );
