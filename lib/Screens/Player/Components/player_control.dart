@@ -238,8 +238,8 @@ Widget _buildBlurredCircle(Widget child) {
     child: BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Container(
-        width: 30,
-        height: 30,
+        width: 35,
+        height: 35,
         padding: const EdgeInsets.all(6),
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.3),
