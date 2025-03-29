@@ -483,10 +483,11 @@ packages:
   interactive_slider:
     dependency: "direct main"
     description:
-      name: interactive_slider
-      sha256: "0b67d6161335059250141c3bfff82b15fb4f852a797a93d9e4b1234ad27b6655"
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "50e24470d1559594713534434969db6b4c9c4b87"
+      url: "https://github.com/Envoy-Z-Lab/interactive_slider.git"
+    source: git
     version: "0.5.1"
   ionicons:
     dependency: "direct main"

@@ -114,7 +114,7 @@ class PlayerControlWidget extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Progress Bar with InteractiveSlider - REPLACE THIS SECTION
+        // Progress Bar
         Obx(() {
           final status = playerController.progressBarStatus.value;
           return Padding(
@@ -185,32 +185,30 @@ class PlayerControlWidget extends StatelessWidget {
         ),
         const SizedBox(height: 20),
 
-        // Volume Control with InteractiveSlider
+        // Volume Control
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Row(
-            children: [
-              const Icon(CupertinoIcons.speaker_fill,
-                  color: Colors.grey, size: 20),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Obx(() {
-                  return InteractiveSlider(
-                    initialProgress: playerController.volume.value * 100,
-                    max: 100,
-                    backgroundColor: Colors.grey[800]!,
-                    foregroundColor: Colors.grey[300]!,
-                    onChanged: (value) {
-                      playerController.setVolume(value / 100);
-                    },
-                  );
-                }),
+          child: Obx(() {
+            return InteractiveSlider(
+              initialProgress: playerController.volume.value * 100,
+              max: 100,
+              backgroundColor: Colors.grey[800]!,
+              foregroundColor: Colors.grey[300]!,
+              startIcon: const Icon(
+                CupertinoIcons.speaker_fill,
+                color: Colors.grey,
+                size: 20,
               ),
-              const SizedBox(width: 12),
-              const Icon(CupertinoIcons.speaker_3_fill,
-                  color: Colors.grey, size: 22),
-            ],
-          ),
+              endIcon: const Icon(
+                CupertinoIcons.speaker_3_fill,
+                color: Colors.grey,
+                size: 22,
+              ),
+              onChanged: (value) {
+                playerController.setVolume(value / 100);
+              },
+            );
+          }),
         ),
         const SizedBox(height: 20),
 
