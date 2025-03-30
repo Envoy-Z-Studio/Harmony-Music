@@ -122,16 +122,14 @@ class ThemeController extends GetxController {
             titleSmall: TextStyle(color: primarySwatch[100]),
             bodyMedium: TextStyle(color: primarySwatch[100]),
             labelMedium: TextStyle(
-                fontWeight: FontWeight.w800,
-                fontSize: 23,
-                color: textColor ?? primarySwatch[50]),
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+                color: Colors.white,
             labelSmall: TextStyle(
-                fontSize: 15,
-                color: titleColorSwatch != null
-                    ? titleColorSwatch[900]
-                    : primarySwatch[100],
+                fontSize: 16,
+                color: textColor ?? primarySwatch[50]),
                 letterSpacing: 0,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.normal,
           ),
           indicatorColor: Colors.white,
           progressIndicatorTheme: ProgressIndicatorThemeData(
