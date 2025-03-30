@@ -123,7 +123,7 @@ class PlayerControlWidget extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 20),
+        const SizedBox(height: 35),
 
         // Progress Bar
         Padding(
@@ -180,7 +180,7 @@ class PlayerControlWidget extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 25),
+        const SizedBox(height: 28),
 
         // Player Controls
         Row(
@@ -212,7 +212,7 @@ class PlayerControlWidget extends StatelessWidget {
           ],
         ),
 
-        const SizedBox(height: 25),
+        const SizedBox(height: 28),
 
         // Volume Control
         Padding(
@@ -249,11 +249,11 @@ class PlayerControlWidget extends StatelessWidget {
             ],
           ),
         ),
-        const Spacer(),
+        const SizedBox(height: 20),
 
         // Bottom Controls
         Padding(
-          padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 16.0),
+          padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 2.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
