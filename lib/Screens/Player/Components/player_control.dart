@@ -57,7 +57,7 @@ class PlayerControlWidget extends StatelessWidget {
                               style: Theme.of(context).textTheme.labelMedium!,
                             ),
                           ),
-                          const SizedBox(height: 5),
+                          const SizedBox(height: 3),
                           Marquee(
                             delay: const Duration(milliseconds: 300),
                             duration: const Duration(seconds: 10),
