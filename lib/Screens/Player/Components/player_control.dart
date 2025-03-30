@@ -123,7 +123,7 @@ class PlayerControlWidget extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 35),
+        const SizedBox(height: 18),
 
         // Progress Bar
         Padding(
