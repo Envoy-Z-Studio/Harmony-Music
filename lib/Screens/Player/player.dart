@@ -2,9 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import 'package:harmonymusic/Screens/Player/Components/albumart_lyrics.dart';
 import 'package:harmonymusic/Screens/Player/Components/background_image.dart';
 import 'package:harmonymusic/Screens/Player/Components/player_control.dart';
@@ -27,9 +25,9 @@ class Player extends StatelessWidget {
     Get.find<SettingsScreenController>();
 
     // Dynamically calculate album art size based on screen size
-    double playerArtImageSize = size.width - 70;
+    double playerArtImageSize = size.width - 50;
     final spaceAvailableForArtImage =
-        size.height - (70 + Get.mediaQuery.padding.bottom + 330);
+        size.height - (50 + Get.mediaQuery.padding.bottom + 330);
     playerArtImageSize = playerArtImageSize > spaceAvailableForArtImage
         ? spaceAvailableForArtImage
         : playerArtImageSize;
@@ -171,7 +169,7 @@ class Player extends StatelessWidget {
                 Align(
                   alignment: Alignment.topCenter,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+ 8.0),// Lower Mini Pill
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: BackdropFilter(
@@ -257,9 +255,9 @@ class Player extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20),
                                 child: Center(
-                                  child: AlbumArtNLyrics(
-                                    playerArtImageSize: size.width * .29,
-                                  ),
+                                  child:  AlbumArtNLyrics(
+                                      playerArtImageSize: size.width * .29,
+                                    ),
                                 ),
                               ),
                             ),
@@ -282,43 +280,31 @@ class Player extends StatelessWidget {
 
                     // Player Content (Portrait Mode)
                     Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // Top Padding (Lyrics Visibility Dependent)
-                          Obx(
-                            () => playerController.showLyricsflag.value
-                                ? SizedBox(
-                                    height: size.height < 750 ? 50 : 80,
-                                  )
-                                : SizedBox(
-                                    height: size.height < 750 ? 100 : 130,
-                                  ),
-                          ),
+                           SizedBox(
+                                height: size.height < 750 ? 100 : 130,
+                              ),
+
 
                           // Lyrics Switch and Album Art
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 500),
-                                child: AlbumArtNLyrics(
-                                    playerArtImageSize: playerArtImageSize),
-                              ),
-                            ],
+                          ConstrainedBox(
+                            constraints: const BoxConstraints(maxWidth: 500),
+                            child: AlbumArtNLyrics(
+                                playerArtImageSize: playerArtImageSize),
                           ),
 
-                          // Spacer
-                          Expanded(child: Container()),
+                          // Gap between album art and player controls
+                          const SizedBox(height: 18),
 
                           // Player Controls
-                          Padding(
-                            padding: EdgeInsets.only(
-                                bottom: 80 + Get.mediaQuery.padding.bottom),
-                            child: Container(
-                              constraints: const BoxConstraints(maxWidth: 500),
-                              child: const PlayerControlWidget(),
-                            ),
-                          )
+                          Container(
+                            constraints: const BoxConstraints(maxWidth: 500),
+                            child: const PlayerControlWidget(),
+                          ),
+                          SizedBox(height: 80 + Get.mediaQuery.padding.bottom),
                         ],
                       ),
               ),
@@ -389,7 +375,7 @@ class Player extends StatelessWidget {
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: EdgeInsets.only(top: MediaQuery.of(context).viewPadding.top+ 8.0),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: BackdropFilter(
