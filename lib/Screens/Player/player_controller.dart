@@ -67,8 +67,11 @@ class PlayerController extends GetxController
   final lyricsMode = 0.obs;
   bool isDesktopLyricsDialogOpen = false;
   final gesturePlayerVisibleState = 2.obs;
-  final lyricUi =
-      UINetease(highlight: true, defaultSize: 20, defaultExtSize: 12);
+  final lyricUi = UINetease(
+    highlight: true,
+    defaultSize: 27,
+    defaultExtSize: 27,
+  );
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
   ScrollController scrollController = ScrollController();
