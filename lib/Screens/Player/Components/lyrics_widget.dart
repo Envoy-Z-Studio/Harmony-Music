@@ -31,17 +31,24 @@ class LyricsWidget extends StatelessWidget {
             child: Text(
               "lyricsNotAvailable".tr,
               textAlign: TextAlign.left,
-              style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                    fontSize: 30,
+                    color: Colors.white,
+                  ),
             ),
           );
         }
+
+        TextStyle baseStyle =
+            Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 30);
 
         return hasSyncedLyrics
             ? IgnorePointer(
                 child: LyricsReader(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
                   lyricUi: playerController.lyricUi,
-                  position: playerController.progressBarStatus.value.current.inMilliseconds,
+                  position: playerController
+                      .progressBarStatus.value.current.inMilliseconds,
                   model: LyricsModelBuilder.create()
                       .bindLyricToMain(syncedLyrics)
                       .getModel(),
@@ -55,7 +62,8 @@ class LyricsWidget extends StatelessWidget {
                   child: SelectableText(
                     plainLyrics,
                     textAlign: TextAlign.left,
-                    style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
+                    style: baseStyle.copyWith(
+                        color: Colors.white.withOpacity(0.7)),
                   ),
                 ),
               );
