@@ -32,16 +32,16 @@ class AlbumArtNLyrics extends StatelessWidget {
                           ),
                   )),
 
-              // Lyrics/Close Button (Toggles based on lyrics state)
+              // Lyrics/Close Button
               Align(
-                alignment: Alignment.topLeft,
+                alignment: Alignment.topRight,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     height: 50,
-                    width: 60,
+                    width: 50,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
+                        shape: BoxShape.circle,
                         border: Border.all(width: 1.3, color: Colors.white),
                         color: Theme.of(context)
                             .colorScheme
@@ -49,7 +49,7 @@ class AlbumArtNLyrics extends StatelessWidget {
                             .withAlpha(150)),
                     child: IconButton(
                       onPressed: () {
-                        playerController.showLyrics(); // Toggle lyrics state
+                        playerController.showLyrics();
                       },
                       icon: Icon(
                         playerController.showLyricsflag.isTrue
