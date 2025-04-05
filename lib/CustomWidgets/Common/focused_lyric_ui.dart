@@ -71,16 +71,14 @@ class FocusedLyricUI extends LyricUI {
   double getPlayingLineBias() => 0.4;
 
   @override
-  LyricAlign getLyricAlign() => LyricAlign.CENTER;
-
-  // --- ADD THIS METHOD ---
-  @override
-  CrossAxisAlignment getLyricHorizontalAlign() => CrossAxisAlignment.center;
-  // --- END OF ADDED METHOD ---
-
-  @override
   bool enableHighlight() => highLight;
 
   @override
   HighlightDirection getHighlightDirection() => HighlightDirection.LTR;
+
+  @override
+  LyricAlign getLyricHorizontalAlign() {
+    // TODO: implement getLyricHorizontalAlign
+    throw UnimplementedError();
+  }
 }
