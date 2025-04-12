@@ -159,7 +159,7 @@ class PlayerControlWidget extends StatelessWidget {
                   trackHeight: 6,
                   activeTrackColor: activeColor,
                   inactiveTrackColor: inactiveColor,
-                  thumbColor: activeColor,
+                  thumbColor: Colors.transparent,
                   thumbShape:
                       const RoundSliderThumbShape(enabledThumbRadius: 8),
                   overlayShape: SliderComponentShape.noOverlay,
@@ -251,7 +251,7 @@ class PlayerControlWidget extends StatelessWidget {
                     trackHeight: 6,
                     activeTrackColor: activeColor,
                     inactiveTrackColor: inactiveColor,
-                    thumbColor: activeColor,
+                    thumbColor: Colors.transparent,
                     thumbShape:
                         const RoundSliderThumbShape(enabledThumbRadius: 8),
                     overlayShape: SliderComponentShape.noOverlay,
