@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
 import 'package:volume_controller/volume_controller.dart';
@@ -19,6 +18,7 @@ import 'package:harmonymusic/Services/windows_audio_service.dart';
 import 'package:harmonymusic/Screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/Screens/PlaylistNAlbum/playlist_and_album_screen_controller.dart';
 import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
+import 'package:harmonymusic/CustomWidgets/Common/lyrics_ui.dart';
 import 'package:harmonymusic/CustomWidgets/Common/sliding_up_panel.dart';
 import 'package:harmonymusic/CustomWidgets/Common/snackbar.dart';
 import 'package:harmonymusic/Utilities/helper.dart';
@@ -67,8 +67,6 @@ class PlayerController extends GetxController
   final lyricsMode = 0.obs;
   bool isDesktopLyricsDialogOpen = false;
   final gesturePlayerVisibleState = 2.obs;
-  final lyricUi =
-      UINetease(highlight: true, defaultSize: 20, defaultExtSize: 12);
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
   ScrollController scrollController = ScrollController();

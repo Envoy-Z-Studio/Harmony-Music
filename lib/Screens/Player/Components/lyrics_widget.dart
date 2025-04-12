@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
 import 'package:harmonymusic/CustomWidgets/Common/loader.dart';
+import 'package:harmonymusic/CustomWidgets/Common/lyrics_ui.dart';
 
 class LyricsWidget extends StatelessWidget {
   final EdgeInsetsGeometry padding;
@@ -13,6 +14,8 @@ class LyricsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final playerController = Get.find<PlayerController>();
+    final customLyricUI = CustomLyricUI(context);
+
     return Obx(
       () {
         if (playerController.isLyricsLoading.isTrue) {
@@ -41,16 +44,14 @@ class LyricsWidget extends StatelessWidget {
           );
         }
 
-        TextStyle baseStyle =
-            Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: 30);
-
         return hasSyncedLyrics
             ? IgnorePointer(
                 child: LyricsReader(
                   padding: const EdgeInsets.symmetric(horizontal: 5),
-                  lyricUi: playerController.lyricUi,
+                  lyricUi: customLyricUI, // Use customLyricUI
                   position: playerController
-                      .progressBarStatus.value.current.inMilliseconds,
+                      .progressBarStatus.value.current.inMilliseconds
+                      .toInt(),
                   model: LyricsModelBuilder.create()
                       .bindLyricToMain(syncedLyrics)
                       .getModel(),
@@ -64,9 +65,10 @@ class LyricsWidget extends StatelessWidget {
                   child: SelectableText(
                     plainLyrics,
                     textAlign: TextAlign.left,
-                    style: baseStyle.copyWith(
-                      color: Colors.white.withOpacity(0.7),
-                    ),
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontSize: 30,
+                          color: Colors.white.withOpacity(0.7),
+                        ),
                   ),
                 ),
               );
