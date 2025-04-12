@@ -285,7 +285,7 @@ class Player extends StatelessWidget {
                         children: [
                           // Top Padding (Lyrics Visibility Dependent)
                            SizedBox(
-                                height: size.height < 750 ? 100 : 130,
+                                height: size.height < 750 ? 50 : 70,
                               ),
 
 
