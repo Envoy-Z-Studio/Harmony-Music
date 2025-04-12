@@ -7,7 +7,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_lyric/lyric_ui/ui_netease.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
-import 'package:flutter_volume_controller/flutter_volume_controller.dart';
+import 'package:volume_controller/volume_controller.dart';
 
 import 'package:harmonymusic/Models/duration_state.dart';
 import 'package:harmonymusic/Models/media_item_builder.dart';
@@ -110,15 +110,17 @@ class PlayerController extends GetxController
     isQueueLoopModeEnabled.value =
         appPrefs.get("queueLoopModeEnabled") ?? false;
 
+    VolumeController.instance.showSystemUI = false;
+
     // Initialize volume from system settings and listen for changes.
-    FlutterVolumeController.getVolume().then((value) {
-      volume.value = value ?? 1.0;
+    VolumeController.instance.getVolume().then((value) {
+      volume.value = value;
     });
 
     // Start listening for system volume changes.
-    FlutterVolumeController.addListener((volume) {
+    VolumeController.instance.addListener((volume) {
       this.volume.value = volume;
-    });
+    }, fetchInitialVolume: true);
 
     if (GetPlatform.isDesktop) {
       // No changes needed here, but kept for consistency (if you store the desktop volume)
@@ -593,7 +595,7 @@ class PlayerController extends GetxController
   }
 
   Future<void> setVolume(double value) async {
-    FlutterVolumeController.setVolume(value);
+    await VolumeController.instance.setVolume(value);
     volume.value = value;
   }
 
@@ -773,7 +775,7 @@ class PlayerController extends GetxController
     scrollController.dispose();
     gesturePlayerStateAnimationController?.dispose();
     sleepTimer?.cancel();
-    FlutterVolumeController.removeListener();
+    VolumeController.instance.removeListener();
     if (GetPlatform.isWindows) {
       Get.delete<WindowsAudioService>();
     }
