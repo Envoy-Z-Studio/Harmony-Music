@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
@@ -18,17 +17,20 @@ import 'package:harmonymusic/Services/windows_audio_service.dart';
 import 'package:harmonymusic/Screens/Home/home_screen_controller.dart';
 import 'package:harmonymusic/Screens/PlaylistNAlbum/playlist_and_album_screen_controller.dart';
 import 'package:harmonymusic/Screens/Settings/settings_screen_controller.dart';
-import 'package:harmonymusic/CustomWidgets/Common/lyrics_ui.dart';
 import 'package:harmonymusic/CustomWidgets/Common/sliding_up_panel.dart';
 import 'package:harmonymusic/CustomWidgets/Common/snackbar.dart';
 import 'package:harmonymusic/Utilities/helper.dart';
 
 class PlayerController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  // Audio Handler and Services
   final _audioHandler = Get.find<AudioHandler>();
   final _musicServices = Get.find<MusicServices>();
+
+  // Observable Lists
   final currentQueue = <MediaItem>[].obs;
 
+  // UI Control Variables
   final playerPaneOpacity = (1.0).obs;
   final isPlayerpanelTopVisible = true.obs;
   final isPanelGTHOpened = false.obs;
@@ -37,22 +39,33 @@ class PlayerController extends GetxController
   final isQueueReorderingInProcess = false.obs;
   PanelController playerPanelController = PanelController();
   PanelController queuePanelController = PanelController();
+
+  // Gesture Player State Animation
   AnimationController? gesturePlayerStateAnimationController;
   Animation<double>? gesturePlayerStateAnimation;
+  final gesturePlayerVisibleState = 2.obs;
+
+  // Radio Mode Variables
   bool isRadioModeOn = false;
   String? radioContinuationParam;
   dynamic radioInitiatorItem;
+
+  // Sleep Timer Variables
   Timer? sleepTimer;
   int timerDuration = 0;
   final timerDurationLeft = 0.obs;
   final isSleepTimerActive = false.obs;
   final isSleepEndOfSongActive = false.obs;
+
+  // Volume Control
   final volume = 1.0.obs;
 
+  // Progress Bar State
   final progressBarStatus = ProgressBarState(
           buffered: Duration.zero, current: Duration.zero, total: Duration.zero)
       .obs;
 
+  // Song and Playback State
   final currentSongIndex = (0).obs;
   final isFirstSong = true;
   final isLastSong = true;
@@ -62,23 +75,28 @@ class PlayerController extends GetxController
   final currentSong = Rxn<MediaItem>();
   final isCurrentSongFav = false.obs;
   final playinfrom = PlaylingFrom(type: PlaylingFromType.SELECTION).obs;
+  final buttonState = PlayButtonState.paused.obs;
+  var _newSongFlag = true;
+  final isCurrentSongBuffered = false.obs;
+
+  // Lyrics State
   final showLyricsflag = false.obs;
   final isLyricsLoading = false.obs;
   final lyricsMode = 0.obs;
   bool isDesktopLyricsDialogOpen = false;
-  final gesturePlayerVisibleState = 2.obs;
   RxMap<String, dynamic> lyrics =
       <String, dynamic>{"synced": "", "plainLyrics": ""}.obs;
+
+  // Global Keys and Controllers
   ScrollController scrollController = ScrollController();
   final GlobalKey<ScaffoldState> homeScaffoldkey = GlobalKey<ScaffoldState>();
 
-  final buttonState = PlayButtonState.paused.obs;
-
-  var _newSongFlag = true;
-  final isCurrentSongBuffered = false.obs;
-
+  // Keyboard Subscription
   late StreamSubscription<bool> keyboardSubscription;
+  // ignore: prefer_typing_uninitialized_variables
+  var recentItem;
 
+  // Initialization and Lifecycle Methods
   @override
   void onInit() {
     _init();
@@ -94,6 +112,21 @@ class PlayerController extends GetxController
     super.onReady();
   }
 
+  @override
+  void dispose() {
+    _audioHandler.customAction('dispose');
+    keyboardSubscription.cancel();
+    scrollController.dispose();
+    gesturePlayerStateAnimationController?.dispose();
+    sleepTimer?.cancel();
+    VolumeController.instance.removeListener();
+    if (GetPlatform.isWindows) {
+      Get.delete<WindowsAudioService>();
+    }
+    super.dispose();
+  }
+
+  // Initialization Methods
   void _init() async {
     _listenForChangesInPlayerState();
     _listenForChangesInPosition();
@@ -102,29 +135,36 @@ class PlayerController extends GetxController
     _listenForPlaylistChange();
     _listenForKeyboardActivity();
     _setInitLyricsMode();
+    _loadInitialPreferences();
+    _initializeVolumeController();
+    _handleDesktopVolume();
+    _initGesturePlayer();
+  }
+
+  void _loadInitialPreferences() {
     final appPrefs = Hive.box("AppPrefs");
     isLoopModeEnabled.value = appPrefs.get("isLoopModeEnabled") ?? false;
     isShuffleModeEnabled.value = appPrefs.get("isShuffleModeEnabled") ?? false;
     isQueueLoopModeEnabled.value =
         appPrefs.get("queueLoopModeEnabled") ?? false;
+  }
 
+  void _initializeVolumeController() {
     VolumeController.instance.showSystemUI = false;
-
-    // Initialize volume from system settings and listen for changes.
     VolumeController.instance.getVolume().then((value) {
       volume.value = value;
     });
-
-    // Start listening for system volume changes.
     VolumeController.instance.addListener((volume) {
       this.volume.value = volume;
     }, fetchInitialVolume: true);
+  }
 
-    if (GetPlatform.isDesktop) {
-      // No changes needed here, but kept for consistency (if you store the desktop volume)
-      // setVolume(appPrefs.get("volume") ?? 100);
-    }
+  void _handleDesktopVolume() {
+    if (GetPlatform.isDesktop) {}
+  }
 
+  void _initGesturePlayer() {
+    final appPrefs = Hive.box("AppPrefs");
     if ((appPrefs.get("playerUi") ?? 0) == 1) {
       initGesturePlayerStateAnimationController();
     }
@@ -146,6 +186,7 @@ class PlayerController extends GetxController
     lyricsMode.value = Hive.box("AppPrefs").get("lyricsMode") ?? 0;
   }
 
+  // UI Listener Methods
   void panellistener(double x) {
     if (x >= 0 && x <= 0.2) {
       playerPaneOpacity.value = 1 - (x * 5);
@@ -169,6 +210,7 @@ class PlayerController extends GetxController
     });
   }
 
+  // Player State Listener Methods
   void _listenForChangesInPlayerState() {
     _audioHandler.playbackState.listen((playerState) {
       final isPlaying = playerState.playing;
@@ -253,7 +295,6 @@ class PlayerController extends GetxController
           Navigator.pop(Get.context!);
         }
 
-        // reset player visible state when player is in gesture mode
         if (Get.find<SettingsScreenController>().playerUi.value == 1) {
           gesturePlayerVisibleState.value = 2;
         }
@@ -268,6 +309,7 @@ class PlayerController extends GetxController
     });
   }
 
+  // Previous Session Restoration
   Future<void> _restorePrevSession() async {
     final restrorePrevSessionEnabled =
         Hive.box("AppPrefs").get("restrorePlaybackSession") ?? false;
@@ -291,16 +333,12 @@ class PlayerController extends GetxController
     }
   }
 
-  ///pushSongToPlaylist method clear previous song queue, plays the tapped song and push related
-  ///songs into Queue
+  // Playlist and Queue Management Methods
   Future<void> pushSongToQueue(MediaItem? mediaItem,
       {String? playlistid, bool radio = false}) async {
-    /// update playing from value
     playinfrom.value = PlaylingFrom(
         type: PlaylingFromType.SELECTION,
         name: radio ? "randomRadio".tr : "randomSelection".tr);
-
-    /// set global radio mode flag
     isRadioModeOn = radio;
 
     Future.delayed(
@@ -315,8 +353,6 @@ class PlayerController extends GetxController
           await _audioHandler.customAction("shuffleCmd", {"index": 0});
         }
 
-        // added here to broadcast current mediaitem via Audio Service as list is updated
-        // if radio is started on current playing song
         if (radio && (currentSong.value?.id == mediaItem?.id)) {
           _audioHandler
               .customAction("upadateMediaItemInAudioService", {"index": 0});
@@ -339,12 +375,10 @@ class PlayerController extends GetxController
       return;
     }
 
-    //currentSong.value = mediaItem;
     _playerPanelCheck();
     await _audioHandler
         .customAction("setSourceNPlay", {'mediaItem': mediaItem});
 
-    // disable queue loop mode when radio is started
     if (radio &&
         isQueueLoopModeEnabled.isTrue &&
         isShuffleModeEnabled.isFalse) {
@@ -355,13 +389,9 @@ class PlayerController extends GetxController
   Future<void> playPlayListSong(List<MediaItem> mediaItems, int index,
       {PlaylingFrom? playfrom}) async {
     isRadioModeOn = false;
-    //open player pane,set current song and push first song into playing list,
-
-    /// update playing from value
     playinfrom.value =
         playfrom ?? PlaylingFrom(type: PlaylingFromType.SELECTION);
 
-    //for changing home content based on last interation
     Future.delayed(const Duration(seconds: 3), () {
       if (Hive.box("AppPrefs").get("discoverContentType") == "BOLI") {
         Get.find<HomeScreenController>()
@@ -394,20 +424,16 @@ class PlayerController extends GetxController
     await enqueueSongList(List<MediaItem>.from(content['tracks']));
   }
 
-  ///enqueueSong   append a song to current queue
-  ///if current queue is empty, push the song into Queue and play that song
   Future<void> enqueueSong(MediaItem mediaItem) async {
     if (currentQueue.isEmpty) {
       await playPlayListSong([mediaItem], 0);
       return;
     }
-    //check if song is available in queue and if not add it to queue
     if (!currentQueue.contains(mediaItem)) {
       _audioHandler.addQueueItem(mediaItem);
     }
   }
 
-  ///enqueueSongList method add song List to current queue
   Future<void> enqueueSongList(List<MediaItem> mediaItems) async {
     if (currentQueue.isEmpty) {
       await playPlayListSong(mediaItems, 0);
@@ -445,13 +471,25 @@ class PlayerController extends GetxController
       }
       onReorder(index, currentSongIndex.value + 1);
     } else {
-      //Will add song just below the current song
       (currentIndx == currentQueue.length - 1)
           ? enqueueSong(song)
           : _audioHandler.customAction("addPlayNextItem", {"mediaItem": song});
     }
   }
 
+  void removeFromQueue(MediaItem song) {
+    _audioHandler.removeQueueItem(song);
+  }
+
+  void clearQueue() {
+    _audioHandler.customAction("clearQueue");
+  }
+
+  void shuffleQueue() {
+    _audioHandler.customAction("shuffleQueue");
+  }
+
+  // Player Panel Check
   void _playerPanelCheck({bool restoreSession = false}) {
     final isWideScreen = Get.size.width > 800;
     final autoOpenPlayer = Hive.box("AppPrefs").get("autoOpenPlayer") ?? true;
@@ -473,18 +511,7 @@ class PlayerController extends GetxController
     }
   }
 
-  void removeFromQueue(MediaItem song) {
-    _audioHandler.removeQueueItem(song);
-  }
-
-  void clearQueue() {
-    _audioHandler.customAction("clearQueue");
-  }
-
-  void shuffleQueue() {
-    _audioHandler.customAction("shuffleQueue");
-  }
-
+  // Playback Control Methods
   Future<void> toggleShuffleMode() async {
     final shuffleModeEnabled = isShuffleModeEnabled.value;
     shuffleModeEnabled
@@ -492,7 +519,7 @@ class PlayerController extends GetxController
         : _audioHandler.setShuffleMode(AudioServiceShuffleMode.all);
     isShuffleModeEnabled.value = !shuffleModeEnabled;
     await Hive.box("AppPrefs").put("isShuffleModeEnabled", !shuffleModeEnabled);
-    // restrict queue loop mode when shuffle mode is enabled
+
     if (isShuffleModeEnabled.isTrue && isQueueLoopModeEnabled.isFalse) {
       isQueueLoopModeEnabled.value = true;
     } else if (isShuffleModeEnabled.isFalse) {
@@ -525,7 +552,7 @@ class PlayerController extends GetxController
   void playPause() {
     if (initFlagForPlayer) return;
     _audioHandler.playbackState.value.playing ? pause() : play();
-    // for gesture player
+
     if (Get.find<SettingsScreenController>().playerUi.value == 1) {
       gesturePlayerVisibleState.value =
           _audioHandler.playbackState.value.playing ? 0 : 1;
@@ -592,6 +619,7 @@ class PlayerController extends GetxController
         .put("queueLoopModeEnabled", isQueueLoopModeEnabled.value);
   }
 
+  // Volume Control Methods
   Future<void> setVolume(double value) async {
     await VolumeController.instance.setVolume(value);
     volume.value = value;
@@ -612,6 +640,7 @@ class PlayerController extends GetxController
     volume.value = vol.toDouble();
   }
 
+  // Favorite Song Management
   Future<void> _checkFav() async {
     isCurrentSongFav.value =
         (await Hive.openBox("LIBFAV")).containsKey(currentSong.value!.id);
@@ -643,10 +672,7 @@ class PlayerController extends GetxController
     }
   }
 
-  // ignore: prefer_typing_uninitialized_variables
-  var recentItem;
-
-  /// This function is used to add a mediaItem/Song to Recently played playlist
+  // Recently Played Management
   Future<void> _addToRP(MediaItem mediaItem) async {
     if (recentItem != mediaItem) {
       final box = await Hive.openBox("LIBRP");
@@ -669,19 +695,17 @@ class PlayerController extends GetxController
           playlistController.songList
               .removeWhere((element) => element.id == removedSongId);
         }
-        // removes current duplicate item from list
         playlistController.songList
             .removeWhere((element) => element.id == mediaItem.id);
-        // adds current item to list
         playlistController.addNRemoveItemsinList(mediaItem,
             action: 'add', index: 0);
-
         // ignore: empty_catches
       } catch (e) {}
     }
     recentItem = mediaItem;
   }
 
+  // Lyrics Management Methods
   Future<void> showLyrics() async {
     showLyricsflag.value = !showLyricsflag.value;
     if ((lyrics["synced"].isEmpty && lyrics['plainLyrics'].isEmpty) &&
@@ -717,6 +741,7 @@ class PlayerController extends GetxController
     lyricsMode.value = val!;
   }
 
+  // Sleep Timer Methods
   void sleepEndOfSong() {
     isSleepTimerActive.value = true;
     isSleepEndOfSongActive.value = true;
@@ -754,30 +779,30 @@ class PlayerController extends GetxController
     timerDurationLeft.value = 0;
   }
 
+  // Equalizer Method
   Future<void> openEqualizer() async {
     await _audioHandler.customAction("openEqualizer");
   }
 
-  /// Called from audio handler in case audio is not playable
-  /// or returned streamInfo null due to network error
+  // Notification Method
   void notifyPlayError(String message) {
     ScaffoldMessenger.of(Get.context!).showSnackBar(snackbar(
         Get.context!, message == "networkError" ? message.tr : message,
         size: SanckBarSize.MEDIUM));
   }
 
-  @override
-  void dispose() {
-    _audioHandler.customAction('dispose');
-    keyboardSubscription.cancel();
-    scrollController.dispose();
-    gesturePlayerStateAnimationController?.dispose();
-    sleepTimer?.cancel();
-    VolumeController.instance.removeListener();
-    if (GetPlatform.isWindows) {
-      Get.delete<WindowsAudioService>();
+  // Helper method to format duration
+  String formatDuration(Duration duration) {
+    String twoDigits(int n) => n.toString().padLeft(2, "0");
+    final hours = duration.inHours;
+    final minutes = duration.inMinutes.remainder(60);
+    final seconds = duration.inSeconds.remainder(60);
+
+    if (hours > 0) {
+      return '$hours:${twoDigits(minutes)}:${twoDigits(seconds)}';
+    } else {
+      return '$minutes:${twoDigits(seconds)}';
     }
-    super.dispose();
   }
 }
 
