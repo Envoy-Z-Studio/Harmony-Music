@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'dart:ui';
-
 import 'package:get/get.dart';
 import 'package:widget_marquee/widget_marquee.dart';
 
@@ -12,6 +10,9 @@ import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 
 class PlayerControlWidget extends StatelessWidget {
   const PlayerControlWidget({super.key});
+
+  final Color activeColor = const Color(0xB3D0D8F0);
+  final Color inactiveColor = const Color(0x66A0A8C0);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class PlayerControlWidget extends StatelessWidget {
       children: [
         // Song Information (Title, Artist, Favorite, More)
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -76,8 +77,15 @@ class PlayerControlWidget extends StatelessWidget {
               ),
               Row(
                 children: [
-                  _buildBlurredCircle(
-                    CupertinoButton(
+                  Container(
+                    height: 35,
+                    width: 35,
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white.withAlpha(150),
+                    ),
+                    child: CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: playerController.toggleFavourite,
                       child: Obx(() => Icon(
@@ -90,8 +98,15 @@ class PlayerControlWidget extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 5),
-                  _buildBlurredCircle(
-                    CupertinoButton(
+                  Container(
+                    height: 35,
+                    width: 35,
+                    padding: const EdgeInsets.all(6),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white.withAlpha(150),
+                    ),
+                    child: CupertinoButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         showModalBottomSheet(
@@ -111,7 +126,7 @@ class PlayerControlWidget extends StatelessWidget {
                         ).whenComplete(() => Get.delete<SongInfoController>());
                       },
                       child: const Icon(
-                        CupertinoIcons.ellipsis,
+                        CupertinoIcons.ellipsis_vertical,
                         color: Colors.white,
                         size: 22,
                       ),
@@ -127,15 +142,15 @@ class PlayerControlWidget extends StatelessWidget {
 
         // Progress Bar
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             children: [
               SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   trackHeight: 6,
-                  activeTrackColor: Colors.grey[300],
-                  inactiveTrackColor: Colors.grey[800],
-                  thumbColor: Colors.grey[300],
+                  activeTrackColor: activeColor,
+                  inactiveTrackColor: inactiveColor,
+                  thumbColor: activeColor,
                   thumbShape:
                       const RoundSliderThumbShape(enabledThumbRadius: 8),
                   overlayShape: SliderComponentShape.noOverlay,
@@ -164,14 +179,12 @@ class PlayerControlWidget extends StatelessWidget {
                     Obx(() => Text(
                           _formatDuration(
                               playerController.progressBarStatus.value.current),
-                          style:
-                              TextStyle(fontSize: 14, color: Colors.grey[300]),
+                          style: TextStyle(fontSize: 14, color: activeColor),
                         )),
                     Obx(() => Text(
                           _formatDuration(
                               playerController.progressBarStatus.value.total),
-                          style:
-                              TextStyle(fontSize: 14, color: Colors.grey[300]),
+                          style: TextStyle(fontSize: 14, color: activeColor),
                         )),
                   ],
                 ),
@@ -216,19 +229,18 @@ class PlayerControlWidget extends StatelessWidget {
 
         // Volume Control
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(CupertinoIcons.speaker_fill,
-                  color: Colors.grey, size: 20),
+              Icon(CupertinoIcons.speaker_fill, color: activeColor, size: 20),
               Expanded(
                 child: SliderTheme(
                   data: SliderTheme.of(context).copyWith(
                     trackHeight: 6,
-                    activeTrackColor: Colors.grey[300],
-                    inactiveTrackColor: Colors.grey[800],
-                    thumbColor: Colors.grey[300],
+                    activeTrackColor: activeColor,
+                    inactiveTrackColor: inactiveColor,
+                    thumbColor: activeColor,
                     thumbShape:
                         const RoundSliderThumbShape(enabledThumbRadius: 8),
                     overlayShape: SliderComponentShape.noOverlay,
@@ -244,11 +256,11 @@ class PlayerControlWidget extends StatelessWidget {
                   }),
                 ),
               ),
-              const Icon(CupertinoIcons.speaker_3_fill,
-                  color: Colors.grey, size: 22),
+              Icon(CupertinoIcons.speaker_3_fill, color: activeColor, size: 22),
             ],
           ),
         ),
+
         const SizedBox(height: 20),
 
         // Bottom Controls
@@ -260,8 +272,11 @@ class PlayerControlWidget extends StatelessWidget {
               CupertinoButton(
                 padding: EdgeInsets.zero,
                 onPressed: () => playerController.queuePanelController.open(),
-                child: const Icon(CupertinoIcons.list_bullet,
-                    color: Colors.white, size: 24),
+                child: Icon(CupertinoIcons.list_bullet,
+                    color: playerController.queuePanelController.isPanelOpen
+                        ? Colors.white
+                        : inactiveColor,
+                    size: 24),
               ),
               CupertinoButton(
                 padding: EdgeInsets.zero,
@@ -270,7 +285,7 @@ class PlayerControlWidget extends StatelessWidget {
                       CupertinoIcons.shuffle,
                       color: playerController.isShuffleModeEnabled.value
                           ? Colors.white
-                          : Colors.grey,
+                          : inactiveColor,
                       size: 24,
                     )),
               ),
@@ -281,7 +296,7 @@ class PlayerControlWidget extends StatelessWidget {
                       CupertinoIcons.repeat,
                       color: playerController.isLoopModeEnabled.value
                           ? Colors.white
-                          : Colors.grey,
+                          : inactiveColor,
                       size: 24,
                     )),
               ),
@@ -292,31 +307,11 @@ class PlayerControlWidget extends StatelessWidget {
     );
   }
 
-  // Helper method for blurred circular background
-  Widget _buildBlurredCircle(Widget child) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(15),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-        child: Container(
-          width: 35,
-          height: 35,
-          padding: const EdgeInsets.all(6),
-          decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.3),
-            shape: BoxShape.circle,
-          ),
-          child: Center(child: child),
-        ),
-      ),
-    );
-  }
-
   // Utility function to format duration
   String _formatDuration(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
     String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
     String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }
