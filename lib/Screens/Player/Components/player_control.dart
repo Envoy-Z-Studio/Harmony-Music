@@ -11,8 +11,8 @@ import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 class PlayerControlWidget extends StatelessWidget {
   const PlayerControlWidget({super.key});
 
-  final Color activeColor = const Color(0xB3D0D8F0);
-  final Color inactiveColor = const Color(0x66A0A8C0);
+  final Color activeColor = const Color(0x66FFFFFF);
+  final Color inactiveColor = const Color(0x1AFFFFFF);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +66,7 @@ class PlayerControlWidget extends StatelessWidget {
                             child: Text(
                               playerController.currentSong.value?.artist ??
                                   "NA",
-                              style: Theme.of(context).textTheme.labelSmall,
+                              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: inactiveColor),
                             ),
                           ),
                         ],
@@ -171,6 +171,7 @@ class PlayerControlWidget extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0.0),
                 child: Row(
@@ -234,6 +235,7 @@ class PlayerControlWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Icon(CupertinoIcons.speaker_fill, color: activeColor, size: 20),
+              const SizedBox(width: 8),
               Expanded(
                 child: SliderTheme(
                   data: SliderTheme.of(context).copyWith(
@@ -256,6 +258,7 @@ class PlayerControlWidget extends StatelessWidget {
                   }),
                 ),
               ),
+              const SizedBox(width: 8),
               Icon(CupertinoIcons.speaker_3_fill, color: activeColor, size: 22),
             ],
           ),
