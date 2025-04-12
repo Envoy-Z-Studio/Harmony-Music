@@ -6,6 +6,7 @@ import 'package:widget_marquee/widget_marquee.dart';
 
 import 'package:harmonymusic/Screens/Player/Components/play_pause_button.dart';
 import 'package:harmonymusic/Screens/Player/player_controller.dart';
+import 'package:harmonymusic/CustomWidgets/Common/no_overlay_shape.dart';
 import 'package:harmonymusic/CustomWidgets/Common/songinfo_bottom_sheet.dart';
 
 class PlayerControlWidget extends StatelessWidget {
@@ -22,7 +23,7 @@ class PlayerControlWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        // Song Information (Title, Artist, Favorite, More)
+        // Song Information Section
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -31,53 +32,60 @@ class PlayerControlWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(right: 8.0),
-                  child: ShaderMask(
-                    shaderCallback: (rect) {
-                      return const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Colors.white,
-                          Colors.white,
-                          Colors.transparent
-                        ],
-                      ).createShader(
-                          Rect.fromLTWH(0, 0, rect.width, rect.height));
-                    },
-                    blendMode: BlendMode.dstIn,
-                    child: Obx(() {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Marquee(
-                            delay: const Duration(milliseconds: 300),
-                            duration: const Duration(seconds: 10),
-                            id: "${playerController.currentSong.value}_title",
-                            child: Text(
-                              playerController.currentSong.value?.title ?? "NA",
-                              style: Theme.of(context).textTheme.labelMedium!,
+                  // Fade In Animation
+                  child: AnimatedOpacity(
+                    opacity: 1.0,
+                    duration: const Duration(milliseconds: 500),
+                    child: ShaderMask(
+                      shaderCallback: (rect) {
+                        return const LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Colors.white,
+                            Colors.white,
+                            Colors.transparent
+                          ],
+                        ).createShader(
+                            Rect.fromLTWH(0, 0, rect.width, rect.height));
+                      },
+                      blendMode: BlendMode.dstIn,
+                      child: Obx(() {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Marquee(
+                              delay: const Duration(milliseconds: 300),
+                              duration: const Duration(seconds: 10),
+                              id: "${playerController.currentSong.value}_title",
+                              child: Text(
+                                playerController.currentSong.value?.title ??
+                                    "NA",
+                                style: Theme.of(context).textTheme.labelMedium!,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 3),
-                          Marquee(
-                            delay: const Duration(milliseconds: 300),
-                            duration: const Duration(seconds: 10),
-                            id: "${playerController.currentSong.value}_subtitle",
-                            child: Text(
-                              playerController.currentSong.value?.artist ??
-                                  "NA",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .labelSmall!
-                                  .copyWith(color: const Color(0x33FFFFFF)),
+                            const SizedBox(height: 3),
+                            Marquee(
+                              delay: const Duration(milliseconds: 300),
+                              duration: const Duration(seconds: 10),
+                              id: "${playerController.currentSong.value}_subtitle",
+                              child: Text(
+                                playerController.currentSong.value?.artist ??
+                                    "NA",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall!
+                                    .copyWith(color: const Color(0x80FFFFFF)),
+                              ),
                             ),
-                          ),
-                        ],
-                      );
-                    }),
+                          ],
+                        );
+                      }),
+                    ),
                   ),
                 ),
               ),
+              // Favourite and More Buttons
               Row(
                 children: [
                   Container(
@@ -146,10 +154,9 @@ class PlayerControlWidget extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 18),
 
-        // Progress Bar
+        // Progress Bar Section
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
@@ -162,7 +169,7 @@ class PlayerControlWidget extends StatelessWidget {
                   thumbColor: Colors.transparent,
                   thumbShape:
                       const RoundSliderThumbShape(enabledThumbRadius: 8),
-                  overlayShape: SliderComponentShape.noOverlay,
+                  overlayShape: NoOverlayShape(),
                 ),
                 child: Obx(
                   () => Slider(
@@ -187,12 +194,12 @@ class PlayerControlWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Obx(() => Text(
-                          _formatDuration(
+                          playerController.formatDuration(
                               playerController.progressBarStatus.value.current),
                           style: TextStyle(fontSize: 14, color: activeColor),
                         )),
                     Obx(() => Text(
-                          _formatDuration(
+                          playerController.formatDuration(
                               playerController.progressBarStatus.value.total),
                           style: TextStyle(fontSize: 14, color: activeColor),
                         )),
@@ -202,10 +209,9 @@ class PlayerControlWidget extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 28),
 
-        // Player Controls
+        // Player Controls Section
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -234,10 +240,9 @@ class PlayerControlWidget extends StatelessWidget {
             ),
           ],
         ),
-
         const SizedBox(height: 28),
 
-        // Volume Control
+        // Volume Control Section
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
@@ -254,7 +259,7 @@ class PlayerControlWidget extends StatelessWidget {
                     thumbColor: Colors.transparent,
                     thumbShape:
                         const RoundSliderThumbShape(enabledThumbRadius: 8),
-                    overlayShape: SliderComponentShape.noOverlay,
+                    overlayShape: NoOverlayShape(),
                   ),
                   child: Obx(() {
                     return Slider(
@@ -272,10 +277,9 @@ class PlayerControlWidget extends StatelessWidget {
             ],
           ),
         ),
-
         const SizedBox(height: 20),
 
-        // Bottom Controls
+        // Bottom Controls Section
         Padding(
           padding: const EdgeInsets.fromLTRB(12.0, 0.0, 12.0, 2.0),
           child: Row(
@@ -317,13 +321,5 @@ class PlayerControlWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  // Utility function to format duration
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "$twoDigitMinutes:$twoDigitSeconds";
   }
 }

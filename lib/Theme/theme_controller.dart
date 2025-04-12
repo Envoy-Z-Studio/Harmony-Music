@@ -289,7 +289,7 @@ class ThemeController extends GetxController {
             activeTrackColor: Colors.grey[800],
             //progress bar color
             valueIndicatorColor: Colors.white38,
-            thumbColor: Colors.grey[800],
+            thumbColor: Colors.transparent,
           ),
           textSelectionTheme: TextSelectionThemeData(
               cursorColor: Colors.grey[400],
