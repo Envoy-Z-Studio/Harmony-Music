@@ -66,7 +66,10 @@ class PlayerControlWidget extends StatelessWidget {
                             child: Text(
                               playerController.currentSong.value?.artist ??
                                   "NA",
-                              style: Theme.of(context).textTheme.labelSmall!.copyWith(color: inactiveColor),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall!
+                                  .copyWith(color: const Color(0x33FFFFFF)),
                             ),
                           ),
                         ],
@@ -83,7 +86,10 @@ class PlayerControlWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withAlpha(150),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withAlpha(150),
                     ),
                     child: CupertinoButton(
                       padding: EdgeInsets.zero,
@@ -104,7 +110,10 @@ class PlayerControlWidget extends StatelessWidget {
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white.withAlpha(150),
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withAlpha(150),
                     ),
                     child: CupertinoButton(
                       padding: EdgeInsets.zero,
